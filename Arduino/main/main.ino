@@ -1,6 +1,5 @@
 #include <SPI.h> // SPI is Serial Peripheral Interface, for SD communication usage 
 #include <SD.h> // enable Arduino ESP32 read the SD card data
-/* ---- SD Library Link: https://www.arduino.cc/reference/en/libraries/sd/ ---- */
 #include <FastLED.h> // used to control `Address controllable led light strip`
 
 // Define part for LED strip
