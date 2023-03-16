@@ -1,6 +1,6 @@
 # 2023 NCKU Light-Dance System Project
 
-### conclude whole light dancing system
+### Include whole light dancing system
 
 ## Features
 - `AD10`: PCB and circuit component design
