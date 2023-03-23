@@ -1,9 +1,5 @@
 #include <SD.h>
 #include <SPI.h>
-/*
-到時候要把LED_Control轉成*.cpp和*.h(變成一個自定義的library)
-再include <LED_Control.h>來使用
-*/
 
 // 預設SD卡和Arduino板溝通用的pin
 // CS: Chip Select pin
