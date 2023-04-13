@@ -9,3 +9,5 @@ C:\Users\User\Desktop\light-dance\GUI\obj\Debug\GUI.csproj.GenerateResource.cach
 C:\Users\User\Desktop\light-dance\GUI\obj\Debug\GUI.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\light-dance\GUI\obj\Debug\GUI.exe
 C:\Users\User\Desktop\light-dance\GUI\obj\Debug\GUI.pdb
+C:\Users\User\Desktop\light-dance\GUI\bin\Debug\AxInterop.WMPLib.dll
+C:\Users\User\Desktop\light-dance\GUI\obj\Debug\GUI.csproj.CopyComplete
