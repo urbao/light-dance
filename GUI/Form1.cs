@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,8 +24,19 @@ namespace GUI
         private WMPLib.WindowsMediaPlayer wmp = new WMPLib.WindowsMediaPlayer();
         private string chosedBodyPart="";
         private string chosedHexColor="";
-        string[] available_body_parts = { "Head", "Right Hand", "Right Foot", "Left Hand", "Left Foot"};
+        string[] available_body_parts = { "Head", "Right Hand", "Right Foot", "Left Hand", "Left Foot", "Body"};
         bool isPlayingAudio = false;
+        // 預設色塊顏色(用Hex Code表示，共6碼)
+        string DEFAULT_RED = "#C70039";
+        string DEFAULT_ORANGE = "#FF5733";
+        string DEFAULT_YELLOW = "#FFC300";
+        string DEFAULT_GREEN = "#00ff67";
+        string DEFAULT_DARKGREEN = "#0d9b46";
+        string DEFAULT_CYAN = "#00FFFF";
+        string DEFAULT_BLUE = "#0d7f9b";
+        string DEFAULT_PURPLE = "#c007dc";
+        string DEFAULT_PINK = "#f44ae0";
+        string DEFAULT_BLACK = "#000000";
 
         public Form1()
         {
@@ -54,6 +66,30 @@ namespace GUI
             blueTextBox.TextChanged += new EventHandler(RGBtextBoxChanged);
             // 尚未import music之前，預設總時間為00:00
             totalTimeTextBox.Text = string.Format("{0:00}:{1:00}", 0, 0);
+
+            // 把預設得色塊顏色指定給對應的label
+            redColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_RED);
+            orangeColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_ORANGE);
+            yellowColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_YELLOW);
+            greenColorBtn.BackColor=ColorTranslator.FromHtml(DEFAULT_GREEN);
+            darkGreenColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_DARKGREEN);
+            cyanColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_CYAN);
+            blueColorBtn.BackColor=ColorTranslator.FromHtml(DEFAULT_BLUE);
+            purpleColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_PURPLE);
+            pinkColorBtn.BackColor=ColorTranslator.FromHtml(DEFAULT_PINK);
+            blackColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_BLACK);
+
+            // 任何一格預設色塊的button被點擊，更新RGB顏色
+            redColorBtn.Click += new EventHandler((sender, e)=>UpdateRGBToDefaultColor(sender, e, DEFAULT_RED));
+            orangeColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_ORANGE));
+            yellowColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_YELLOW));
+            greenColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_GREEN));
+            darkGreenColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_DARKGREEN));
+            cyanColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_CYAN));
+            blueColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_BLUE));
+            purpleColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_PURPLE));
+            pinkColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_PINK));
+            blackColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_BLACK));
         }
 
         // 把textBox RGB值更新，並更新colorPanel的顏色
@@ -170,11 +206,63 @@ namespace GUI
                 chosedHexColor= currColor.ToArgb().ToString("X6");
             }
             string addedText = currTime.ToString() + "," + chosedBodyPart + chosedHexColor + "\r\n";
-            textBox1.AppendText(addedText);
-            // 把選擇部位和顏色重新reset
-            redTextBox.Text = "0";
-            greenTextBox.Text = "0";
-            blueTextBox.Text = "0";
+            listBox1.Items.Add(addedText);  
+        }
+
+        // 把RGB更新為點擊的預設色塊button顏色
+        private void UpdateRGBToDefaultColor(object sender, EventArgs e, string DEFAULT_COLOR)
+        {
+            Color color = (Color)ColorTranslator.FromHtml(DEFAULT_COLOR);
+            redTextBox.Text = color.R.ToString();
+            greenTextBox.Text = color.G.ToString();
+            blueTextBox.Text = color.B.ToString();
+        }
+
+        private void saveFileBtn_Click(object sender, EventArgs e)
+        {
+            // 先檢查是否有資料可以存檔，如果沒有，印出警示
+            if (listBox1.Items.Count == 0)
+            {
+                MessageBox.Show("The data section cannot be empty !\nAdd something via 'Add' button :)", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // 不再繼續存檔動作
+            }
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            // 只允許存成csv檔(可以再做調整)
+            saveFileDialog.Filter = "CSV files (*.csv)|*.csv";
+            // 用今日日期和時間存檔
+            DateTime currDateTime = DateTime.Now;
+            saveFileDialog.FileName = currDateTime.ToString("yyyyMMdd_HH-mm");
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                listBox1.Items.Add("Save File OK(Just testing)");
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // 刪掉在listBox1中選取的line
+            string selectedLine=(string)listBox1.SelectedItem;
+            if(selectedLine == null)
+            {
+                MessageBox.Show("No line is chosed in data section :(", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                listBox1.Items.Remove(selectedLine);
+            }
+        }
+
+        // 當使用者選取某行資料，並且按下delete鍵，則delete該行
+        private void listBox1_KeyDown_1(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (listBox1.SelectedIndex != -1)
+                {
+                    listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+                }
+            }
         }
     }
 }
