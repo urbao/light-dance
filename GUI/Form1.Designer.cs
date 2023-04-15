@@ -75,7 +75,7 @@
             // 
             this.checkedListBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.checkedListBox1.BackColor = System.Drawing.Color.Teal;
+            this.checkedListBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.checkedListBox1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkedListBox1.FormattingEnabled = true;
@@ -88,6 +88,7 @@
             // 
             // colorPanel
             // 
+            this.colorPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.colorPanel.Location = new System.Drawing.Point(251, 7);
             this.colorPanel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.colorPanel.Name = "colorPanel";
@@ -212,7 +213,7 @@
             // 
             this.importBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.importBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.importBtn.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.importBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.importBtn.Location = new System.Drawing.Point(344, 385);
             this.importBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.importBtn.Name = "importBtn";
@@ -248,7 +249,7 @@
             // 
             this.playBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.playBtn.BackColor = System.Drawing.Color.Lime;
-            this.playBtn.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playBtn.Location = new System.Drawing.Point(202, 385);
             this.playBtn.Margin = new System.Windows.Forms.Padding(0);
             this.playBtn.Name = "playBtn";
@@ -267,7 +268,7 @@
             // 
             this.trackBarTimeLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trackBarTimeLine.BackColor = System.Drawing.Color.Teal;
+            this.trackBarTimeLine.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.trackBarTimeLine.Cursor = System.Windows.Forms.Cursors.Default;
             this.trackBarTimeLine.Location = new System.Drawing.Point(-1, 433);
             this.trackBarTimeLine.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -282,7 +283,7 @@
             this.addBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.addBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.addBtn.FlatAppearance.BorderSize = 0;
-            this.addBtn.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addBtn.Location = new System.Drawing.Point(526, 385);
             this.addBtn.Name = "addBtn";
             this.addBtn.Size = new System.Drawing.Size(86, 35);
@@ -391,7 +392,7 @@
             // 
             this.saveFileBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.saveFileBtn.BackColor = System.Drawing.Color.MediumPurple;
-            this.saveFileBtn.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saveFileBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveFileBtn.Location = new System.Drawing.Point(719, 385);
             this.saveFileBtn.Name = "saveFileBtn";
             this.saveFileBtn.Size = new System.Drawing.Size(112, 35);
@@ -405,7 +406,7 @@
             this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.BackColor = System.Drawing.Color.Teal;
+            this.listBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listBox1.Font = new System.Drawing.Font("Consolas", 10F);
             this.listBox1.FormattingEnabled = true;
@@ -413,7 +414,6 @@
             this.listBox1.ItemHeight = 23;
             this.listBox1.Location = new System.Drawing.Point(564, 7);
             this.listBox1.Name = "listBox1";
-            this.listBox1.ScrollAlwaysVisible = true;
             this.listBox1.Size = new System.Drawing.Size(282, 158);
             this.listBox1.TabIndex = 34;
             this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown_1);
@@ -422,7 +422,7 @@
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button1.BackColor = System.Drawing.Color.Fuchsia;
-            this.button1.Font = new System.Drawing.Font("Consolas", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(618, 385);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(95, 35);
@@ -433,9 +433,8 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(863, 520);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.listBox1);
@@ -475,7 +474,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.Text = "Light Dance ";
+            this.Text = "NCKUEE Light Dance Design";
             ((System.ComponentModel.ISupportInitialize)(this.blueTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.redTrackBar)).EndInit();

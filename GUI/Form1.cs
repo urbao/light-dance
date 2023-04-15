@@ -24,8 +24,11 @@ namespace GUI
         private WMPLib.WindowsMediaPlayer wmp = new WMPLib.WindowsMediaPlayer();
         private string chosedBodyPart="";
         private string chosedHexColor="";
-        string[] available_body_parts = { "Head", "Right Hand", "Right Foot", "Left Hand", "Left Foot", "Body"};
         bool isPlayingAudio = false;
+
+        /* ----- 以下的global參數可以視情況做調整 -----*/
+        // 可以操控的LED燈條部位
+        string[] available_body_parts = { "Head", "Right Hand", "Right Foot", "Left Hand", "Left Foot", "Body" };
         // 預設色塊顏色(用Hex Code表示，共6碼)
         string DEFAULT_RED = "#C70039";
         string DEFAULT_ORANGE = "#FF5733";
@@ -39,19 +42,37 @@ namespace GUI
         string DEFAULT_BLACK = "#000000";
         string DEFAULT_LIGHTPINK = "#FFB6C1";
         string DEFAULT_LIGHTBLUE = "#B0C4DE";
+        // dark mode的色塊hex code
+        string DARKMODE_DARKGREY = "#191E1F";
+        string DARKMODE_LIGHTGREY = "#1A282D";
+        string DARKMODE_WHITE = "#F2F2F1";
+        string DARKMODE_DARKWHITE = "#B0B6B8";
+        string DARKMODE_CYAN = "#06D1B5";
+        string DARKMODE_PINK = "#F436BC";
+
+        /* ---------------------------------------- */
 
         public Form1()
         {
             InitializeComponent();
             // 各個區塊的顏色(改掉原本預設的白色(太醜了))
-            this.BackColor=System.Drawing.ColorTranslator.FromHtml("#2e3e46");
-            listBox1.BackColor = System.Drawing.ColorTranslator.FromHtml("#7d9393");
-            listBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
+            this.BackColor=System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKGREY);
+            listBox1.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            listBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             listBox1.Font = new System.Drawing.Font("Consolas", 11);
-            checkedListBox1.BackColor = System.Drawing.ColorTranslator.FromHtml("#7d9393");
-            checkedListBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
+            checkedListBox1.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            checkedListBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             checkedListBox1.Font = new System.Drawing.Font("Consolas", 10);
-            trackBarTimeLine.BackColor = System.Drawing.ColorTranslator.FromHtml("#7d9393");
+            trackBarTimeLine.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            currTimeTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
+            totalTimeTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
+            redTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
+            greenTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
+            blueTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
+            redTrackBar.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            greenTrackBar.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            blueTrackBar.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
 
             // 列出所有可以控制的身體部位
             // 可以做彈性調整(目前預設: 頭/右手/右腳/左手/左腳)
@@ -181,7 +202,7 @@ namespace GUI
                 timer1.Stop();
                 isPlayingAudio = false;
                 playBtn.Text = "Play";
-                playBtn.BackColor = Color.LightGreen;
+                playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
             }
             else
             {
@@ -189,7 +210,7 @@ namespace GUI
                 timer1.Start();
                 isPlayingAudio = true;
                 playBtn.Text = "Pause";
-                playBtn.BackColor = Color.LightPink;
+                playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_PINK);
             }
         }
 
@@ -268,6 +289,7 @@ namespace GUI
                 listBox1.Items.Remove(selectedLine);
             }
         }
+
 
         // 當使用者選取某行資料，並且按下delete鍵，則delete該行
         private void listBox1_KeyDown_1(object sender, KeyEventArgs e)
