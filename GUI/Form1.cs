@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace GUI
         // 有音檔位置, wpm, 預覽畫面的line...
         private string musicFilePath;
         private WMPLib.WindowsMediaPlayer wmp = new WMPLib.WindowsMediaPlayer();
-        private string chosedBodyPart="";
+        private List<string> chosedBodyPart=new List<string>();
         private string chosedHexColor="";
         bool isPlayingAudio = false;
 
@@ -161,12 +162,11 @@ namespace GUI
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // 先reset選擇的bodyPart string
-            chosedBodyPart = "";
-            // 檢查是否點選的都有真的被讀到
+            // 先reset選擇的bodyPart string(用clear function)
+            chosedBodyPart.Clear();
             foreach (string item in checkedListBox1.CheckedItems)
             {
-                chosedBodyPart += item.ToString()+",";
+                chosedBodyPart.Add(item.ToString());
             }
         }
 
@@ -232,7 +232,7 @@ namespace GUI
             // 有做foolproof: 防止沒有選擇部位: 印出警示提醒
             // 或是RGB沒給值: 預設為(0,0,0)
             int currTime=(int)wmp.controls.currentPosition;
-            if (chosedBodyPart.Length == 0)
+            if (chosedBodyPart.Count == 0)
             {
                 MessageBox.Show("The body parts cannot be empty :(", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // 不再繼續寫入資料
@@ -242,8 +242,14 @@ namespace GUI
                 Color currColor = Color.FromArgb(0, 0, 0);
                 chosedHexColor= currColor.ToArgb().ToString("X6");
             }
-            string addedText = currTime.ToString() + "," + chosedBodyPart + chosedHexColor + "\r\n";
-            listBox1.Items.Add(addedText);  
+            // 把chosedBodyPart的每個部位都寫成一行獨立command
+            string addedText = "";
+            foreach(string bodyPart in chosedBodyPart)
+            {
+                addedText=currTime.ToString() + "," + bodyPart + "," + chosedHexColor + "\r\n";
+                listBox1.Items.Add(addedText);
+
+            }
         }
 
         // 把RGB更新為點擊的預設色塊button顏色
@@ -289,7 +295,6 @@ namespace GUI
                 listBox1.Items.Remove(selectedLine);
             }
         }
-
 
         // 當使用者選取某行資料，並且按下delete鍵，則delete該行
         private void listBox1_KeyDown_1(object sender, KeyEventArgs e)

@@ -65,6 +65,7 @@
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.blueTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.greenTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.redTrackBar)).BeginInit();
@@ -79,10 +80,10 @@
             this.checkedListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.checkedListBox1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(7, 7);
+            this.checkedListBox1.Location = new System.Drawing.Point(8, 7);
             this.checkedListBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(238, 312);
+            this.checkedListBox1.Size = new System.Drawing.Size(238, 338);
             this.checkedListBox1.TabIndex = 1;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -101,11 +102,11 @@
             this.blueTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.blueTrackBar.LargeChange = 1;
-            this.blueTrackBar.Location = new System.Drawing.Point(393, 330);
+            this.blueTrackBar.Location = new System.Drawing.Point(666, 330);
             this.blueTrackBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.blueTrackBar.Maximum = 255;
             this.blueTrackBar.Name = "blueTrackBar";
-            this.blueTrackBar.Size = new System.Drawing.Size(453, 69);
+            this.blueTrackBar.Size = new System.Drawing.Size(180, 69);
             this.blueTrackBar.TabIndex = 5;
             this.blueTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.blueTrackBar.Scroll += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
@@ -115,11 +116,11 @@
             this.greenTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.greenTrackBar.LargeChange = 1;
-            this.greenTrackBar.Location = new System.Drawing.Point(393, 253);
+            this.greenTrackBar.Location = new System.Drawing.Point(666, 253);
             this.greenTrackBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.greenTrackBar.Maximum = 255;
             this.greenTrackBar.Name = "greenTrackBar";
-            this.greenTrackBar.Size = new System.Drawing.Size(453, 69);
+            this.greenTrackBar.Size = new System.Drawing.Size(180, 69);
             this.greenTrackBar.TabIndex = 6;
             this.greenTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -128,11 +129,11 @@
             this.redTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.redTrackBar.LargeChange = 1;
-            this.redTrackBar.Location = new System.Drawing.Point(393, 176);
+            this.redTrackBar.Location = new System.Drawing.Point(666, 176);
             this.redTrackBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.redTrackBar.Maximum = 255;
             this.redTrackBar.Name = "redTrackBar";
-            this.redTrackBar.Size = new System.Drawing.Size(453, 69);
+            this.redTrackBar.Size = new System.Drawing.Size(180, 69);
             this.redTrackBar.TabIndex = 7;
             this.redTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -142,7 +143,7 @@
             this.R.BackColor = System.Drawing.Color.Red;
             this.R.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.R.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.R.Location = new System.Drawing.Point(286, 176);
+            this.R.Location = new System.Drawing.Point(559, 176);
             this.R.Name = "R";
             this.R.Size = new System.Drawing.Size(23, 24);
             this.R.TabIndex = 8;
@@ -155,7 +156,7 @@
             this.label1.BackColor = System.Drawing.Color.Lime;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(285, 253);
+            this.label1.Location = new System.Drawing.Point(558, 253);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(24, 24);
             this.label1.TabIndex = 9;
@@ -168,7 +169,7 @@
             this.label2.BackColor = System.Drawing.Color.Cyan;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label2.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(285, 330);
+            this.label2.Location = new System.Drawing.Point(558, 330);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(23, 24);
             this.label2.TabIndex = 10;
@@ -178,7 +179,7 @@
             // redTextBox
             // 
             this.redTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.redTextBox.Location = new System.Drawing.Point(323, 176);
+            this.redTextBox.Location = new System.Drawing.Point(596, 176);
             this.redTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.redTextBox.Name = "redTextBox";
             this.redTextBox.Size = new System.Drawing.Size(64, 29);
@@ -188,7 +189,7 @@
             // greenTextBox
             // 
             this.greenTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.greenTextBox.Location = new System.Drawing.Point(323, 253);
+            this.greenTextBox.Location = new System.Drawing.Point(596, 253);
             this.greenTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.greenTextBox.Name = "greenTextBox";
             this.greenTextBox.Size = new System.Drawing.Size(64, 29);
@@ -198,7 +199,7 @@
             // blueTextBox
             // 
             this.blueTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.blueTextBox.Location = new System.Drawing.Point(323, 330);
+            this.blueTextBox.Location = new System.Drawing.Point(596, 330);
             this.blueTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.blueTextBox.Name = "blueTextBox";
             this.blueTextBox.Size = new System.Drawing.Size(64, 29);
@@ -520,6 +521,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 
