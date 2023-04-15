@@ -1,7 +1,5 @@
 # 2023 NCKU Light-Dance System Project
 
-### Include whole light dancing system
-
 ## Features
 - `AD10`: PCB and circuit component design
 - `SD card`: store LED on/off and RGB data
