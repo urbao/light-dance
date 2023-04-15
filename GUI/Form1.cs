@@ -37,10 +37,22 @@ namespace GUI
         string DEFAULT_PURPLE = "#c007dc";
         string DEFAULT_PINK = "#f44ae0";
         string DEFAULT_BLACK = "#000000";
+        string DEFAULT_LIGHTPINK = "#FFB6C1";
+        string DEFAULT_LIGHTBLUE = "#B0C4DE";
 
         public Form1()
         {
             InitializeComponent();
+            // 各個區塊的顏色(改掉原本預設的白色(太醜了))
+            this.BackColor=System.Drawing.ColorTranslator.FromHtml("#2e3e46");
+            listBox1.BackColor = System.Drawing.ColorTranslator.FromHtml("#7d9393");
+            listBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
+            listBox1.Font = new System.Drawing.Font("Consolas", 11);
+            checkedListBox1.BackColor = System.Drawing.ColorTranslator.FromHtml("#7d9393");
+            checkedListBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml("#000000");
+            checkedListBox1.Font = new System.Drawing.Font("Consolas", 10);
+            trackBarTimeLine.BackColor = System.Drawing.ColorTranslator.FromHtml("#7d9393");
+
             // 列出所有可以控制的身體部位
             // 可以做彈性調整(目前預設: 頭/右手/右腳/左手/左腳)
             checkedListBox1.Items.AddRange(available_body_parts);
@@ -78,6 +90,8 @@ namespace GUI
             purpleColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_PURPLE);
             pinkColorBtn.BackColor=ColorTranslator.FromHtml(DEFAULT_PINK);
             blackColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_BLACK);
+            lightPinkColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_LIGHTPINK);
+            lightBlueColorBtn.BackColor = ColorTranslator.FromHtml(DEFAULT_LIGHTBLUE);
 
             // 任何一格預設色塊的button被點擊，更新RGB顏色
             redColorBtn.Click += new EventHandler((sender, e)=>UpdateRGBToDefaultColor(sender, e, DEFAULT_RED));
@@ -90,6 +104,8 @@ namespace GUI
             purpleColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_PURPLE));
             pinkColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_PINK));
             blackColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_BLACK));
+            lightPinkColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_LIGHTPINK));
+            lightBlueColorBtn.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_LIGHTBLUE));
         }
 
         // 把textBox RGB值更新，並更新colorPanel的顏色
@@ -119,7 +135,7 @@ namespace GUI
                 blueTrackBar.Value = blue_value;
             Color currColor = Color.FromArgb(redTrackBar.Value, greenTrackBar.Value, blueTrackBar.Value);
             colorPanel.BackColor = currColor;
-            chosedHexColor = currColor.ToArgb().ToString("X6");
+            chosedHexColor = "#"+currColor.ToArgb().ToString("X6").Substring(2);
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
