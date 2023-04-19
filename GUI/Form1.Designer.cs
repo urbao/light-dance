@@ -32,15 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.colorPanel = new System.Windows.Forms.Panel();
-            this.blueTrackBar = new System.Windows.Forms.TrackBar();
-            this.greenTrackBar = new System.Windows.Forms.TrackBar();
-            this.redTrackBar = new System.Windows.Forms.TrackBar();
-            this.R = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.redTextBox = new System.Windows.Forms.TextBox();
-            this.greenTextBox = new System.Windows.Forms.TextBox();
-            this.blueTextBox = new System.Windows.Forms.TextBox();
             this.importAudioDialog = new System.Windows.Forms.OpenFileDialog();
             this.importBtn = new System.Windows.Forms.Button();
             this.currTimeTextBox = new System.Windows.Forms.TextBox();
@@ -49,26 +40,23 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.trackBarTimeLine = new System.Windows.Forms.TrackBar();
             this.addBtn = new System.Windows.Forms.Button();
-            this.redColorBtn = new System.Windows.Forms.Button();
-            this.orangeColorBtn = new System.Windows.Forms.Button();
-            this.yellowColorBtn = new System.Windows.Forms.Button();
-            this.greenColorBtn = new System.Windows.Forms.Button();
-            this.darkGreenColorBtn = new System.Windows.Forms.Button();
-            this.cyanColorBtn = new System.Windows.Forms.Button();
-            this.blueColorBtn = new System.Windows.Forms.Button();
-            this.purpleColorBtn = new System.Windows.Forms.Button();
-            this.pinkColorBtn = new System.Windows.Forms.Button();
-            this.lightPinkColorBtn = new System.Windows.Forms.Button();
-            this.lightBlueColorBtn = new System.Windows.Forms.Button();
-            this.blackColorBtn = new System.Windows.Forms.Button();
+            this.colorBtn1 = new System.Windows.Forms.Button();
+            this.colorBtn2 = new System.Windows.Forms.Button();
+            this.colorBtn3 = new System.Windows.Forms.Button();
+            this.colorBtn4 = new System.Windows.Forms.Button();
+            this.colorBtn5 = new System.Windows.Forms.Button();
+            this.colorBtn6 = new System.Windows.Forms.Button();
+            this.colorBtn7 = new System.Windows.Forms.Button();
+            this.colorBtn8 = new System.Windows.Forms.Button();
+            this.colorBtn9 = new System.Windows.Forms.Button();
+            this.colorBtn10 = new System.Windows.Forms.Button();
+            this.colorBtn11 = new System.Windows.Forms.Button();
+            this.colorBtn12 = new System.Windows.Forms.Button();
             this.saveFileBtn = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.dataSectionListBox = new System.Windows.Forms.ListBox();
             this.button1 = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.blueTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.greenTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.redTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTimeLine)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,115 +84,6 @@
             this.colorPanel.Padding = new System.Windows.Forms.Padding(12);
             this.colorPanel.Size = new System.Drawing.Size(76, 71);
             this.colorPanel.TabIndex = 4;
-            // 
-            // blueTrackBar
-            // 
-            this.blueTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.blueTrackBar.LargeChange = 1;
-            this.blueTrackBar.Location = new System.Drawing.Point(666, 330);
-            this.blueTrackBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.blueTrackBar.Maximum = 255;
-            this.blueTrackBar.Name = "blueTrackBar";
-            this.blueTrackBar.Size = new System.Drawing.Size(180, 69);
-            this.blueTrackBar.TabIndex = 5;
-            this.blueTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.blueTrackBar.Scroll += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
-            // 
-            // greenTrackBar
-            // 
-            this.greenTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.greenTrackBar.LargeChange = 1;
-            this.greenTrackBar.Location = new System.Drawing.Point(666, 253);
-            this.greenTrackBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.greenTrackBar.Maximum = 255;
-            this.greenTrackBar.Name = "greenTrackBar";
-            this.greenTrackBar.Size = new System.Drawing.Size(180, 69);
-            this.greenTrackBar.TabIndex = 6;
-            this.greenTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            // 
-            // redTrackBar
-            // 
-            this.redTrackBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.redTrackBar.LargeChange = 1;
-            this.redTrackBar.Location = new System.Drawing.Point(666, 176);
-            this.redTrackBar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.redTrackBar.Maximum = 255;
-            this.redTrackBar.Name = "redTrackBar";
-            this.redTrackBar.Size = new System.Drawing.Size(180, 69);
-            this.redTrackBar.TabIndex = 7;
-            this.redTrackBar.TickStyle = System.Windows.Forms.TickStyle.None;
-            // 
-            // R
-            // 
-            this.R.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.R.BackColor = System.Drawing.Color.Red;
-            this.R.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.R.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.R.Location = new System.Drawing.Point(559, 176);
-            this.R.Name = "R";
-            this.R.Size = new System.Drawing.Size(23, 24);
-            this.R.TabIndex = 8;
-            this.R.Text = "R";
-            this.R.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.BackColor = System.Drawing.Color.Lime;
-            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label1.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(558, 253);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(24, 24);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "G";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label2.BackColor = System.Drawing.Color.Cyan;
-            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Font = new System.Drawing.Font("Consolas", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(558, 330);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(23, 24);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "B";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // redTextBox
-            // 
-            this.redTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.redTextBox.Location = new System.Drawing.Point(596, 176);
-            this.redTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.redTextBox.Name = "redTextBox";
-            this.redTextBox.Size = new System.Drawing.Size(64, 29);
-            this.redTextBox.TabIndex = 11;
-            this.redTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // greenTextBox
-            // 
-            this.greenTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.greenTextBox.Location = new System.Drawing.Point(596, 253);
-            this.greenTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.greenTextBox.Name = "greenTextBox";
-            this.greenTextBox.Size = new System.Drawing.Size(64, 29);
-            this.greenTextBox.TabIndex = 12;
-            this.greenTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // blueTextBox
-            // 
-            this.blueTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.blueTextBox.Location = new System.Drawing.Point(596, 330);
-            this.blueTextBox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.blueTextBox.Name = "blueTextBox";
-            this.blueTextBox.Size = new System.Drawing.Size(64, 29);
-            this.blueTextBox.TabIndex = 13;
-            this.blueTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // importAudioDialog
             // 
@@ -293,101 +172,101 @@
             this.addBtn.UseVisualStyleBackColor = false;
             this.addBtn.Click += new System.EventHandler(this.addBtn_Click);
             // 
-            // redColorBtn
+            // colorBtn1
             // 
-            this.redColorBtn.Location = new System.Drawing.Point(344, 9);
-            this.redColorBtn.Name = "redColorBtn";
-            this.redColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.redColorBtn.TabIndex = 21;
-            this.redColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn1.Location = new System.Drawing.Point(344, 9);
+            this.colorBtn1.Name = "colorBtn1";
+            this.colorBtn1.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn1.TabIndex = 21;
+            this.colorBtn1.UseVisualStyleBackColor = true;
             // 
-            // orangeColorBtn
+            // colorBtn2
             // 
-            this.orangeColorBtn.Location = new System.Drawing.Point(375, 9);
-            this.orangeColorBtn.Name = "orangeColorBtn";
-            this.orangeColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.orangeColorBtn.TabIndex = 22;
-            this.orangeColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn2.Location = new System.Drawing.Point(375, 9);
+            this.colorBtn2.Name = "colorBtn2";
+            this.colorBtn2.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn2.TabIndex = 22;
+            this.colorBtn2.UseVisualStyleBackColor = true;
             // 
-            // yellowColorBtn
+            // colorBtn3
             // 
-            this.yellowColorBtn.Location = new System.Drawing.Point(406, 9);
-            this.yellowColorBtn.Name = "yellowColorBtn";
-            this.yellowColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.yellowColorBtn.TabIndex = 23;
-            this.yellowColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn3.Location = new System.Drawing.Point(406, 9);
+            this.colorBtn3.Name = "colorBtn3";
+            this.colorBtn3.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn3.TabIndex = 23;
+            this.colorBtn3.UseVisualStyleBackColor = true;
             // 
-            // greenColorBtn
+            // colorBtn4
             // 
-            this.greenColorBtn.Location = new System.Drawing.Point(437, 9);
-            this.greenColorBtn.Name = "greenColorBtn";
-            this.greenColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.greenColorBtn.TabIndex = 24;
-            this.greenColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn4.Location = new System.Drawing.Point(437, 9);
+            this.colorBtn4.Name = "colorBtn4";
+            this.colorBtn4.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn4.TabIndex = 24;
+            this.colorBtn4.UseVisualStyleBackColor = true;
             // 
-            // darkGreenColorBtn
+            // colorBtn5
             // 
-            this.darkGreenColorBtn.Location = new System.Drawing.Point(468, 9);
-            this.darkGreenColorBtn.Name = "darkGreenColorBtn";
-            this.darkGreenColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.darkGreenColorBtn.TabIndex = 25;
-            this.darkGreenColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn5.Location = new System.Drawing.Point(468, 9);
+            this.colorBtn5.Name = "colorBtn5";
+            this.colorBtn5.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn5.TabIndex = 25;
+            this.colorBtn5.UseVisualStyleBackColor = true;
             // 
-            // cyanColorBtn
+            // colorBtn6
             // 
-            this.cyanColorBtn.Location = new System.Drawing.Point(499, 9);
-            this.cyanColorBtn.Name = "cyanColorBtn";
-            this.cyanColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.cyanColorBtn.TabIndex = 26;
-            this.cyanColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn6.Location = new System.Drawing.Point(499, 9);
+            this.colorBtn6.Name = "colorBtn6";
+            this.colorBtn6.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn6.TabIndex = 26;
+            this.colorBtn6.UseVisualStyleBackColor = true;
             // 
-            // blueColorBtn
+            // colorBtn7
             // 
-            this.blueColorBtn.Location = new System.Drawing.Point(344, 54);
-            this.blueColorBtn.Name = "blueColorBtn";
-            this.blueColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.blueColorBtn.TabIndex = 27;
-            this.blueColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn7.Location = new System.Drawing.Point(344, 54);
+            this.colorBtn7.Name = "colorBtn7";
+            this.colorBtn7.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn7.TabIndex = 27;
+            this.colorBtn7.UseVisualStyleBackColor = true;
             // 
-            // purpleColorBtn
+            // colorBtn8
             // 
-            this.purpleColorBtn.Location = new System.Drawing.Point(375, 54);
-            this.purpleColorBtn.Name = "purpleColorBtn";
-            this.purpleColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.purpleColorBtn.TabIndex = 28;
-            this.purpleColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn8.Location = new System.Drawing.Point(375, 54);
+            this.colorBtn8.Name = "colorBtn8";
+            this.colorBtn8.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn8.TabIndex = 28;
+            this.colorBtn8.UseVisualStyleBackColor = true;
             // 
-            // pinkColorBtn
+            // colorBtn9
             // 
-            this.pinkColorBtn.Location = new System.Drawing.Point(406, 54);
-            this.pinkColorBtn.Name = "pinkColorBtn";
-            this.pinkColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.pinkColorBtn.TabIndex = 29;
-            this.pinkColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn9.Location = new System.Drawing.Point(406, 54);
+            this.colorBtn9.Name = "colorBtn9";
+            this.colorBtn9.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn9.TabIndex = 29;
+            this.colorBtn9.UseVisualStyleBackColor = true;
             // 
-            // lightPinkColorBtn
+            // colorBtn10
             // 
-            this.lightPinkColorBtn.Location = new System.Drawing.Point(437, 54);
-            this.lightPinkColorBtn.Name = "lightPinkColorBtn";
-            this.lightPinkColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.lightPinkColorBtn.TabIndex = 30;
-            this.lightPinkColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn10.Location = new System.Drawing.Point(437, 54);
+            this.colorBtn10.Name = "colorBtn10";
+            this.colorBtn10.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn10.TabIndex = 30;
+            this.colorBtn10.UseVisualStyleBackColor = true;
             // 
-            // lightBlueColorBtn
+            // colorBtn11
             // 
-            this.lightBlueColorBtn.Location = new System.Drawing.Point(468, 54);
-            this.lightBlueColorBtn.Name = "lightBlueColorBtn";
-            this.lightBlueColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.lightBlueColorBtn.TabIndex = 31;
-            this.lightBlueColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn11.Location = new System.Drawing.Point(468, 54);
+            this.colorBtn11.Name = "colorBtn11";
+            this.colorBtn11.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn11.TabIndex = 31;
+            this.colorBtn11.UseVisualStyleBackColor = true;
             // 
-            // blackColorBtn
+            // colorBtn12
             // 
-            this.blackColorBtn.Location = new System.Drawing.Point(499, 54);
-            this.blackColorBtn.Name = "blackColorBtn";
-            this.blackColorBtn.Size = new System.Drawing.Size(25, 24);
-            this.blackColorBtn.TabIndex = 32;
-            this.blackColorBtn.UseVisualStyleBackColor = true;
+            this.colorBtn12.Location = new System.Drawing.Point(499, 54);
+            this.colorBtn12.Name = "colorBtn12";
+            this.colorBtn12.Size = new System.Drawing.Size(25, 24);
+            this.colorBtn12.TabIndex = 32;
+            this.colorBtn12.UseVisualStyleBackColor = true;
             // 
             // saveFileBtn
             // 
@@ -402,22 +281,22 @@
             this.saveFileBtn.UseVisualStyleBackColor = false;
             this.saveFileBtn.Click += new System.EventHandler(this.saveFileBtn_Click);
             // 
-            // listBox1
+            // dataSectionListBox
             // 
-            this.listBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dataSectionListBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listBox1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.listBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.listBox1.Font = new System.Drawing.Font("Consolas", 10F);
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.IntegralHeight = false;
-            this.listBox1.ItemHeight = 23;
-            this.listBox1.Location = new System.Drawing.Point(564, 7);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(282, 158);
-            this.listBox1.TabIndex = 34;
-            this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown_1);
+            this.dataSectionListBox.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataSectionListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataSectionListBox.Font = new System.Drawing.Font("Consolas", 10F);
+            this.dataSectionListBox.FormattingEnabled = true;
+            this.dataSectionListBox.IntegralHeight = false;
+            this.dataSectionListBox.ItemHeight = 23;
+            this.dataSectionListBox.Location = new System.Drawing.Point(564, 7);
+            this.dataSectionListBox.Name = "dataSectionListBox";
+            this.dataSectionListBox.Size = new System.Drawing.Size(282, 158);
+            this.dataSectionListBox.TabIndex = 34;
+            this.dataSectionListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown_1);
             // 
             // button1
             // 
@@ -438,35 +317,26 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(863, 520);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.dataSectionListBox);
             this.Controls.Add(this.saveFileBtn);
-            this.Controls.Add(this.blackColorBtn);
-            this.Controls.Add(this.lightBlueColorBtn);
-            this.Controls.Add(this.lightPinkColorBtn);
-            this.Controls.Add(this.pinkColorBtn);
-            this.Controls.Add(this.purpleColorBtn);
-            this.Controls.Add(this.blueColorBtn);
-            this.Controls.Add(this.cyanColorBtn);
-            this.Controls.Add(this.darkGreenColorBtn);
-            this.Controls.Add(this.greenColorBtn);
-            this.Controls.Add(this.yellowColorBtn);
-            this.Controls.Add(this.orangeColorBtn);
-            this.Controls.Add(this.redColorBtn);
+            this.Controls.Add(this.colorBtn12);
+            this.Controls.Add(this.colorBtn11);
+            this.Controls.Add(this.colorBtn10);
+            this.Controls.Add(this.colorBtn9);
+            this.Controls.Add(this.colorBtn8);
+            this.Controls.Add(this.colorBtn7);
+            this.Controls.Add(this.colorBtn6);
+            this.Controls.Add(this.colorBtn5);
+            this.Controls.Add(this.colorBtn4);
+            this.Controls.Add(this.colorBtn3);
+            this.Controls.Add(this.colorBtn2);
+            this.Controls.Add(this.colorBtn1);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.trackBarTimeLine);
             this.Controls.Add(this.playBtn);
             this.Controls.Add(this.totalTimeTextBox);
             this.Controls.Add(this.currTimeTextBox);
             this.Controls.Add(this.importBtn);
-            this.Controls.Add(this.blueTextBox);
-            this.Controls.Add(this.greenTextBox);
-            this.Controls.Add(this.redTextBox);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.R);
-            this.Controls.Add(this.redTrackBar);
-            this.Controls.Add(this.greenTrackBar);
-            this.Controls.Add(this.blueTrackBar);
             this.Controls.Add(this.colorPanel);
             this.Controls.Add(this.checkedListBox1);
             this.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -476,9 +346,6 @@
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(5);
             this.Text = "NCKUEE Light Dance Design";
-            ((System.ComponentModel.ISupportInitialize)(this.blueTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.greenTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.redTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTimeLine)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -488,15 +355,6 @@
         #endregion
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Panel colorPanel;
-        private System.Windows.Forms.TrackBar blueTrackBar;
-        private System.Windows.Forms.TrackBar greenTrackBar;
-        private System.Windows.Forms.TrackBar redTrackBar;
-        private System.Windows.Forms.Label R;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox redTextBox;
-        private System.Windows.Forms.TextBox greenTextBox;
-        private System.Windows.Forms.TextBox blueTextBox;
         private System.Windows.Forms.OpenFileDialog importAudioDialog;
         private System.Windows.Forms.Button importBtn;
         private System.Windows.Forms.TextBox currTimeTextBox;
@@ -505,21 +363,21 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TrackBar trackBarTimeLine;
         private System.Windows.Forms.Button addBtn;
-        private System.Windows.Forms.Button redColorBtn;
-        private System.Windows.Forms.Button orangeColorBtn;
-        private System.Windows.Forms.Button yellowColorBtn;
-        private System.Windows.Forms.Button greenColorBtn;
-        private System.Windows.Forms.Button darkGreenColorBtn;
-        private System.Windows.Forms.Button cyanColorBtn;
-        private System.Windows.Forms.Button blueColorBtn;
-        private System.Windows.Forms.Button purpleColorBtn;
-        private System.Windows.Forms.Button pinkColorBtn;
-        private System.Windows.Forms.Button lightPinkColorBtn;
-        private System.Windows.Forms.Button lightBlueColorBtn;
-        private System.Windows.Forms.Button blackColorBtn;
+        private System.Windows.Forms.Button colorBtn1;
+        private System.Windows.Forms.Button colorBtn2;
+        private System.Windows.Forms.Button colorBtn3;
+        private System.Windows.Forms.Button colorBtn4;
+        private System.Windows.Forms.Button colorBtn5;
+        private System.Windows.Forms.Button colorBtn6;
+        private System.Windows.Forms.Button colorBtn7;
+        private System.Windows.Forms.Button colorBtn8;
+        private System.Windows.Forms.Button colorBtn9;
+        private System.Windows.Forms.Button colorBtn10;
+        private System.Windows.Forms.Button colorBtn11;
+        private System.Windows.Forms.Button colorBtn12;
         private System.Windows.Forms.Button saveFileBtn;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox dataSectionListBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ColorDialog colorDialog1;
     }
