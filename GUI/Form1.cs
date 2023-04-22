@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
@@ -198,7 +199,7 @@ namespace GUI
             string addedText = "";
             foreach(string bodyPart in chosedBodyPart)
             {
-                addedText=currTime.ToString() + "," + bodyPart + "," + chosedHexColor + "\r\n";
+                addedText=currTime.ToString() + "," + bodyPart + "," + chosedHexColor + "\n";
                 dataSectionListBox.Items.Add(addedText);
 
             }
@@ -229,7 +230,15 @@ namespace GUI
             saveFileDialog.FileName = currDateTime.ToString("yyyyMMdd_HH-mm");
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                dataSectionListBox.Items.Add("Save File OK(Just testing)");
+                // 把所有dataSectionListBox的Items存到csv file
+                using (StreamWriter writer=new StreamWriter(saveFileDialog.FileName))
+                {
+                    foreach (string item in dataSectionListBox.Items)
+                    {
+                        writer.Write(item);
+                    }
+                }
+                MessageBox.Show("Successfully save as csv file :)", "Done");
             }
         }
 
@@ -256,6 +265,16 @@ namespace GUI
                 {
                     dataSectionListBox.Items.RemoveAt(dataSectionListBox.SelectedIndex);
                 }
+            }
+        }
+
+        // 把所有dataSectionListBox的資料清除
+        private void resetBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to reset?\n[Caution] This will earse all data !!!", "Confirmation", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                dataSectionListBox.Items.Clear();
             }
         }
     }
