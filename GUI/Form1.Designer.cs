@@ -298,6 +298,7 @@
             this.dataSectionListBox.Name = "dataSectionListBox";
             this.dataSectionListBox.Size = new System.Drawing.Size(403, 364);
             this.dataSectionListBox.TabIndex = 34;
+            this.dataSectionListBox.SelectedIndexChanged += new System.EventHandler(this.dataSectionListBox_SelectedIndexChanged);
             this.dataSectionListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown_1);
             // 
             // button1
@@ -362,7 +363,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.Padding = new System.Windows.Forms.Padding(5);
-            this.Text = "NCKUEE Light Dance Design";
+            this.Text = "NCKUEE Light Dance Design GUI";
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTimeLine)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

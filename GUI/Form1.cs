@@ -277,5 +277,10 @@ namespace GUI
                 dataSectionListBox.Items.Clear();
             }
         }
+
+        private void dataSectionListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
