@@ -96,10 +96,10 @@
             this.importBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.importBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.importBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.importBtn.Location = new System.Drawing.Point(286, 398);
+            this.importBtn.Location = new System.Drawing.Point(261, 398);
             this.importBtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.importBtn.Name = "importBtn";
-            this.importBtn.Size = new System.Drawing.Size(137, 35);
+            this.importBtn.Size = new System.Drawing.Size(141, 35);
             this.importBtn.TabIndex = 14;
             this.importBtn.Text = "Import Audio";
             this.importBtn.UseVisualStyleBackColor = false;
@@ -132,7 +132,7 @@
             this.playBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.playBtn.BackColor = System.Drawing.Color.Lime;
             this.playBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.playBtn.Location = new System.Drawing.Point(183, 398);
+            this.playBtn.Location = new System.Drawing.Point(166, 398);
             this.playBtn.Margin = new System.Windows.Forms.Padding(0);
             this.playBtn.Name = "playBtn";
             this.playBtn.Size = new System.Drawing.Size(92, 35);

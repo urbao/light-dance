@@ -6,12 +6,12 @@ C:\Users\User\Desktop\light-dance\GUI\obj\Debug\GUI.Properties.Resources.resourc
 C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance.csproj.GenerateResource.cache
 C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance.csproj.CoreCompileInputs.cache
 C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance.csproj.CopyComplete
-C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance.exe.config
-C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance.exe.manifest
-C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance.application
-C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance.exe
-C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance.pdb
-C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance.exe.manifest
-C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance.application
-C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance.exe
-C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance.pdb
+C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance Design GUI.exe.config
+C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance Design GUI.exe.manifest
+C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance Design GUI.application
+C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance Design GUI.exe
+C:\Users\User\Desktop\light-dance\GUI\bin\Debug\NCKUEE Light Dance Design GUI.pdb
+C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance Design GUI.exe.manifest
+C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance Design GUI.application
+C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance Design GUI.exe
+C:\Users\User\Desktop\light-dance\GUI\obj\Debug\NCKUEE Light Dance Design GUI.pdb
