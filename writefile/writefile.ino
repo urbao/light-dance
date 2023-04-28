@@ -14,13 +14,14 @@ File dataFile;
 // 可手動更換存在SD卡的檔名(Default: SDFile.csv)
 const String SDFileName="SDFile.csv";
 
-// 宣告SDFile物件(代表SD卡的檔案)
+// 宣告SDFile物件(代表SD卡的檔案) 
 File SD_File;
 
 void setup(){
     Serial.begin(9600);
+    pinMode(CSpin, OUTPUT);
     // 檢查是否CS pin有接到SD卡
-    if(SD.begin(CSpin)==false){
+    if(!SD.begin(CSpin)){
         Serial.println("[Error] Unable to initialize SD card");
         return;
     }
