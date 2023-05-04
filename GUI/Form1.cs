@@ -25,12 +25,16 @@ namespace GUI
         private string musicFilePath;
         private WMPLib.WindowsMediaPlayer wmp = new WMPLib.WindowsMediaPlayer();
         private List<string> chosedBodyPart=new List<string>();
-        private string chosedHexColor="";
+        private string chosedLedMode = "";
+        private int lastChosedLedModeIdx = -1;
+        //private string chosedHexColor="";
         bool isPlayingAudio = false;
 
         /* ----- 以下的global參數可以視情況做調整 -----*/
         // 可以操控的LED燈條部位
-        string[] available_body_parts = { "Head", "Right Hand", "Right Foot", "Left Hand", "Left Foot", "Body" };
+        string[] available_body_parts = { "Head", "Body", "Right Hand", "Left Hand", "Right Foot", "Left Foot", "Shoes" };
+        // 可以控制LED亮暗的模式
+        string[] available_led_modes = { "Both Off", "1 On(2 Off)", "1 Off(2 On)", "Both On" };
         // 預設色塊顏色(用Hex Code表示，共6碼)
         string DEFAULT_COLOR_1 = "#C70039";
         string DEFAULT_COLOR_2 = "#FF5733";
@@ -66,11 +70,14 @@ namespace GUI
             checkedListBox1.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             checkedListBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             checkedListBox1.Font = new System.Drawing.Font("Consolas", 10);
+            checkedListBox2.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            checkedListBox2.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
+            checkedListBox2.Font = new System.Drawing.Font("Consolas", 10);
             trackBarTimeLine.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             currTimeTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
             totalTimeTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
             playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
-            colorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml("#000000");
+            //colorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml("#000000");
 
             // 列出所有可以控制的身體部位
             // 可以做彈性調整(目前預設: 頭/右手/右腳/左手/左腳/身體)
@@ -78,11 +85,16 @@ namespace GUI
             // 點一下選項就可以成功選取部位
             checkedListBox1.CheckOnClick = true;
 
+            // 列出所有可以選擇的亮暗模式
+            checkedListBox2.Items.AddRange(available_led_modes);
+            checkedListBox2.CheckOnClick = true;
+
             // 尚未import music之前，預設總時間為00:00
             totalTimeTextBox.Text = string.Format("{0:00}:{1:00}", 0, 0);
 
+
             // 把預設得色塊顏色指定給對應的label
-            colorBtn1.BackColor = ColorTranslator.FromHtml(DEFAULT_COLOR_1);
+            /*colorBtn1.BackColor = ColorTranslator.FromHtml(DEFAULT_COLOR_1);
             colorBtn2.BackColor = ColorTranslator.FromHtml(DEFAULT_COLOR_2);
             colorBtn3.BackColor = ColorTranslator.FromHtml(DEFAULT_COLOR_3);
             colorBtn4.BackColor=ColorTranslator.FromHtml(DEFAULT_COLOR_4);
@@ -93,21 +105,21 @@ namespace GUI
             colorBtn9.BackColor=ColorTranslator.FromHtml(DEFAULT_COLOR_9);
             colorBtn12.BackColor = ColorTranslator.FromHtml(DEFAULT_COLOR_10);
             colorBtn10.BackColor = ColorTranslator.FromHtml(DEFAULT_COLOR_11);
-            colorBtn11.BackColor = ColorTranslator.FromHtml(DEFAULT_COLOR_12);
+            colorBtn11.BackColor = ColorTranslator.FromHtml(DEFAULT_COLOR_12);*/
 
             // 任何一格預設色塊的button被點擊，更新RGB顏色
-            colorBtn1.Click += new EventHandler((sender, e)=>UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_1));
-            colorBtn2.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_2));
-            colorBtn3.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_3));
-            colorBtn4.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_4));
-            colorBtn5.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_5));
-            colorBtn6.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_6));
-            colorBtn7.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_7));
-            colorBtn8.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_8));
-            colorBtn9.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_9));
-            colorBtn12.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_10));
-            colorBtn10.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_11));
-            colorBtn11.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_12));
+            /* colorBtn1.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_1));
+             colorBtn2.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_2));
+             colorBtn3.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_3));
+             colorBtn4.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_4));
+             colorBtn5.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_5));
+             colorBtn6.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_6));
+             colorBtn7.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_7));
+             colorBtn8.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_8));
+             colorBtn9.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_9));
+             colorBtn12.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_10));
+             colorBtn10.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_11));
+             colorBtn11.Click += new EventHandler((sender, e) => UpdateRGBToDefaultColor(sender, e, DEFAULT_COLOR_12));*/
         }
 
 
@@ -190,28 +202,49 @@ namespace GUI
                 MessageBox.Show("The body parts cannot be empty :(", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // 不再繼續寫入資料
             }
-            if (chosedHexColor.Length == 0)
+            if (chosedLedMode == "")
             {
-                string DEFAULT_COLOR_10 = "#000000";
-                chosedHexColor = DEFAULT_COLOR_10;
+                MessageBox.Show("The LED mode cannot be empty :(", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             // 把chosedBodyPart的每個部位都寫成一行獨立command
             string addedText = "";
             foreach(string bodyPart in chosedBodyPart)
             {
-                addedText=currTime.ToString() + "," + bodyPart + "," + chosedHexColor + "\n";
+                // 把dataSectionListBox的內容印的整齊一點
+                int timeMaxLength = 5;
+                int bodyPartMaxLength = 11;
+                int ledModeMaxLength = 12;
+                string prettyCurrTime=(currTime.ToString()).PadLeft(timeMaxLength, ' ');
+                string prettyBodyPart = bodyPart.PadLeft(bodyPartMaxLength, ' ');
+                string prettyLedMode = chosedLedMode.PadLeft(ledModeMaxLength, ' ');
+                addedText=prettyCurrTime+"|"+prettyBodyPart+"|"+prettyLedMode;
                 dataSectionListBox.Items.Add(addedText);
 
             }
+            // 把資料加入成功後，依據time重新排序順序(方便使用者觀察和之後存檔)
+            // 先把dataSectionListBox的資料存到List<string>，再對其排序
+            // 最後，再把資料存回dataSectionListBox
+            List<string> allItems=dataSectionListBox.Items.Cast<string>().ToList();
+            allItems.Sort((s1, s2) => {
+                s1.TrimStart();
+                s2.TrimStart();
+                int time1 = int.Parse(s1.Split('|')[0]);
+                int time2 = int.Parse(s2.Split('|')[0]);
+                return time1.CompareTo(time2);
+            });
+            dataSectionListBox.Items.Clear();
+            dataSectionListBox.Items.AddRange(allItems.ToArray());
+
         }
 
         // 把RGB更新為點擊的預設色塊button顏色
-        private void UpdateRGBToDefaultColor(object sender, EventArgs e, string DEFAULT_COLOR)
+        /*private void UpdateRGBToDefaultColor(object sender, EventArgs e, string DEFAULT_COLOR)
         {
             Color color = (Color)ColorTranslator.FromHtml(DEFAULT_COLOR);
             chosedHexColor = DEFAULT_COLOR;
             colorPanel.BackColor = color;
-        }
+        }*/
 
         private void saveFileBtn_Click(object sender, EventArgs e)
         {
@@ -235,8 +268,41 @@ namespace GUI
                 {
                     foreach (string item in dataSectionListBox.Items)
                     {
-                        writer.Write(item);
+                        // 寫檔之前，把item轉成Arduino讀檔看得懂的內容
+                        // 用Split()把資料分開判斷
+                        string[] data=item.Split('|');
+                        // data[]={currTime, bodyPart, Mode}
+                        // 先把currTime轉成millisecond
+                        int timeSec = Int32.Parse(data[0]);
+                        string timeMillis = (timeSec * 1000).ToString();
+
+                        // 再把bodyPart轉成相應0~6代號
+                        string code = "-1";
+                        // 移除padding用的space
+                        data[1] = data[1].TrimStart();
+                        if (data[1] == "Head") code = "0";
+                        else if (data[1] == "Body") code = "1";
+                        else if (data[1] == "Right Hand") code = "2";
+                        else if (data[1] == "Left Hand") code = "3";
+                        else if (data[1] == "Right Foot") code = "4";
+                        else if (data[1] == "Left Foot") code = "5";
+                        else if (data[1] == "Shoes") code = "6";
+                        else code="-1";
+
+                        // 把chosedLedMode也加入最後寫的內容
+                        string mode = "-2";
+                        // 移除padding用的space
+                        data[2] = data[2].TrimStart();
+                        if (data[2] == "Both Off") mode = "0";
+                        else if (data[2] == "1 On(2 Off)") mode = "1";
+                        else if (data[2] == "1 Off(2 On)") mode = "2";
+                        else if (data[2] == "Both On") mode = "3";
+                        else mode="-2";
+                        string writtenData=timeMillis + "," + code+","+mode+"\n";
+                        writer.Write(writtenData);
                     }
+                    // 多寫入一行End File方便辨識是否結束
+                    writer.Write("End File");
                 }
                 MessageBox.Show("Successfully save as csv file :)", "Done");
             }
@@ -278,9 +344,28 @@ namespace GUI
             }
         }
 
-        private void dataSectionListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            // selectedIndex: 前一個選的mode的index
+            int selectedIndex = checkedListBox2.SelectedIndex;
+            if (selectedIndex==lastChosedLedModeIdx)
+            {
+                checkedListBox2.SetItemChecked(selectedIndex, true);
+                return;
+            }
+            else
+            {
+                lastChosedLedModeIdx=selectedIndex;
+            }
+            // 把剩下的mode皆設為false，因為只允許一次選一個mode
+            for (int i = 0; i < checkedListBox2.Items.Count; i++)
+            {
+                if (i != selectedIndex)
+                {
+                    checkedListBox2.SetItemChecked(i, false);
+                }
+            }
+            chosedLedMode = checkedListBox2.SelectedItem.ToString();
         }
     }
 }
