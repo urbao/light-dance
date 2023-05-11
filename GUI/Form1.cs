@@ -77,6 +77,12 @@ namespace GUI
             currTimeTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
             totalTimeTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
             playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
+            groupBox1.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            groupBox1.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
+            groupBox2.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            groupBox2.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
+            groupBox3.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            groupBox3.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             //colorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml("#000000");
 
             // 列出所有可以控制的身體部位
@@ -235,7 +241,8 @@ namespace GUI
             });
             dataSectionListBox.Items.Clear();
             dataSectionListBox.Items.AddRange(allItems.ToArray());
-
+            // 確保dataSectionListBox一直都是顯示最下面的資料(自動滑動)
+            dataSectionListBox.SelectedIndex = dataSectionListBox.Items.Count - 1;
         }
 
         // 把RGB更新為點擊的預設色塊button顏色
