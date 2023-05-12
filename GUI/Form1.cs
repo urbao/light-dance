@@ -83,6 +83,11 @@ namespace GUI
             groupBox2.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             groupBox3.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             groupBox3.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
+            groupBox4.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            groupBox4.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
+            stateTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            stateTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml("#BFF5CC");
+            stateTextBox.Font = new System.Drawing.Font("Consolas", 11);
             //colorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml("#000000");
 
             // 列出所有可以控制的身體部位
@@ -160,6 +165,7 @@ namespace GUI
                 totalTimeTextBox.Text = string.Format("{0:00}:{1:00}", minute, second);
                 trackBarTimeLine.Value = 0;
                 currTimeTextBox.Text = trackBarTimeLine.Value.ToString();
+                stateTextBox.Text = "Successfully import "+wmp.URL;
             }
             playBtn.Text = "Pause";
             playBtn.BackColor = Color.LightPink;
@@ -226,8 +232,9 @@ namespace GUI
                 string prettyLedMode = chosedLedMode.PadLeft(ledModeMaxLength, ' ');
                 addedText=prettyCurrTime+"|"+prettyBodyPart+"|"+prettyLedMode;
                 dataSectionListBox.Items.Add(addedText);
-
             }
+            string showingMsg="[Add] Time:"+currTime.ToString()+"s | Parts:"+chosedBodyPart.Count()+" | Mode:"+chosedLedMode;
+            stateTextBox.Text = showingMsg;
             // 把資料加入成功後，依據time重新排序順序(方便使用者觀察和之後存檔)
             // 先把dataSectionListBox的資料存到List<string>，再對其排序
             // 最後，再把資料存回dataSectionListBox
@@ -312,6 +319,7 @@ namespace GUI
                     writer.Write("End File");
                 }
                 MessageBox.Show("Successfully save as csv file :)", "Done");
+                stateTextBox.Text = "[Save] Save data as csv file";
             }
         }
 
@@ -326,18 +334,9 @@ namespace GUI
             else
             {
                 dataSectionListBox.Items.Remove(selectedLine);
-            }
-        }
-
-        // 當使用者選取某行資料，並且按下delete鍵，則delete該行
-        private void listBox1_KeyDown_1(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Delete)
-            {
-                if (dataSectionListBox.SelectedIndex != -1)
-                {
-                    dataSectionListBox.Items.RemoveAt(dataSectionListBox.SelectedIndex);
-                }
+                string[] splitStr=selectedLine.Split('|');
+                string showingMsg = splitStr[0]+" | " + splitStr[1]+" | " + splitStr[2];
+                stateTextBox.Text = "[Delete]" + selectedLine;
             }
         }
 
@@ -348,6 +347,7 @@ namespace GUI
             if (dialogResult == DialogResult.Yes)
             {
                 dataSectionListBox.Items.Clear();
+                stateTextBox.Text = "[Reset] Clear all saved work data";
             }
         }
 

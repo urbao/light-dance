@@ -49,10 +49,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.stateTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTimeLine)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkedListBox1
@@ -183,9 +186,8 @@
             this.dataSectionListBox.ItemHeight = 23;
             this.dataSectionListBox.Location = new System.Drawing.Point(6, 13);
             this.dataSectionListBox.Name = "dataSectionListBox";
-            this.dataSectionListBox.Size = new System.Drawing.Size(439, 338);
+            this.dataSectionListBox.Size = new System.Drawing.Size(439, 293);
             this.dataSectionListBox.TabIndex = 34;
-            this.dataSectionListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown_1);
             // 
             // button1
             // 
@@ -258,16 +260,39 @@
             this.groupBox3.Controls.Add(this.dataSectionListBox);
             this.groupBox3.Location = new System.Drawing.Point(544, 9);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(451, 364);
+            this.groupBox3.Size = new System.Drawing.Size(451, 312);
             this.groupBox3.TabIndex = 38;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Preview";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.stateTextBox);
+            this.groupBox4.Location = new System.Drawing.Point(544, 327);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(451, 45);
+            this.groupBox4.TabIndex = 39;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "State";
+            // 
+            // stateTextBox
+            // 
+            this.stateTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.stateTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.stateTextBox.Location = new System.Drawing.Point(6, 16);
+            this.stateTextBox.Name = "stateTextBox";
+            this.stateTextBox.Size = new System.Drawing.Size(439, 22);
+            this.stateTextBox.TabIndex = 38;
             // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1003, 532);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -291,6 +316,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -316,6 +343,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.TextBox stateTextBox;
     }
 }
 
