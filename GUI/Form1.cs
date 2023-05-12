@@ -88,6 +88,12 @@ namespace GUI
             stateTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             stateTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml("#BFF5CC");
             stateTextBox.Font = new System.Drawing.Font("Consolas", 11);
+            groupBox5.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
+            groupBox5.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
+            selectAllRadioBtn.Font = new System.Drawing.Font("Consolas", 10);
+            unselectAllRadioBtn.Font = new System.Drawing.Font("Consolas", 10);
+            upperBodyRadioBtn.Font = new System.Drawing.Font("Consolas", 10);
+            lowerBodyRadioBtn.Font = new System.Drawing.Font("Consolas", 10);
             //colorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml("#000000");
 
             // 列出所有可以控制的身體部位
@@ -144,6 +150,8 @@ namespace GUI
             {
                 chosedBodyPart.Add(item.ToString());
             }
+            // 因為有個別變更部位，把select all/unselect all unchecked
+            checkedListBox1.Refresh();
         }
 
         private void importBtn_Click(object sender, EventArgs e)
@@ -355,6 +363,7 @@ namespace GUI
         {
             // selectedIndex: 前一個選的mode的index
             int selectedIndex = checkedListBox2.SelectedIndex;
+            if (selectedIndex < 0) return;
             if (selectedIndex==lastChosedLedModeIdx)
             {
                 checkedListBox2.SetItemChecked(selectedIndex, true);
@@ -373,6 +382,73 @@ namespace GUI
                 }
             }
             chosedLedMode = checkedListBox2.SelectedItem.ToString();
+        }
+
+        // 所有Body Parts都選
+        private void selectAllRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            unselectAllRadioBtn.Checked = false;
+            upperBodyRadioBtn.Checked= false;
+            lowerBodyRadioBtn.Checked= false;
+            chosedBodyPart.Clear();
+            for(int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, true);
+            }
+            checkedListBox1.Refresh();
+            chosedBodyPart.AddRange(available_body_parts);
+        }
+
+        // 所有Body Parts都不選
+        private void unselectAllRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            selectAllRadioBtn.Checked = false;
+            upperBodyRadioBtn.Checked = false;
+            lowerBodyRadioBtn.Checked = false;
+            chosedBodyPart.Clear();
+            for(int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, false);
+            }
+            checkedListBox1.Refresh();
+        }
+
+        // 只選上半身Body Parts(頭/手/身體)
+        private void upperBodyRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            selectAllRadioBtn.Checked = false;
+            unselectAllRadioBtn.Checked = false;
+            lowerBodyRadioBtn.Checked = false;
+            chosedBodyPart.Clear();
+            for(int i=0;i<4;i++)
+            {
+                checkedListBox1.SetItemChecked(i, true);
+                chosedBodyPart.Add(checkedListBox1.Items[i].ToString());
+            }
+            for(int i=4;i<checkedListBox1.Items.Count;i++)
+            {
+                checkedListBox1.SetItemChecked(i, false);
+            }
+            checkedListBox1.Refresh();
+        }
+
+        // 只選下半身Body Parts(腳/鞋子)
+        private void lowerBodyRadioBtn_CheckedChanged(object sender, EventArgs e)
+        {
+            selectAllRadioBtn.Checked = false;
+            unselectAllRadioBtn.Checked = false;
+            upperBodyRadioBtn.Checked = false;
+            chosedBodyPart.Clear();
+            for (int i = 0; i < 4; i++)
+            {
+                checkedListBox1.SetItemChecked(i, false);
+            }
+            for (int i = 4; i < checkedListBox1.Items.Count; i++)
+            {
+                checkedListBox1.SetItemChecked(i, true);
+                chosedBodyPart.Add(checkedListBox1.Items[i].ToString());
+            }
+            checkedListBox1.Refresh();
         }
     }
 }

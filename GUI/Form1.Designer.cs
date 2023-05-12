@@ -51,11 +51,17 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.stateTextBox = new System.Windows.Forms.TextBox();
+            this.selectAllRadioBtn = new System.Windows.Forms.RadioButton();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.unselectAllRadioBtn = new System.Windows.Forms.RadioButton();
+            this.upperBodyRadioBtn = new System.Windows.Forms.RadioButton();
+            this.lowerBodyRadioBtn = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarTimeLine)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkedListBox1
@@ -69,7 +75,7 @@
             this.checkedListBox1.Location = new System.Drawing.Point(6, 13);
             this.checkedListBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(238, 338);
+            this.checkedListBox1.Size = new System.Drawing.Size(238, 208);
             this.checkedListBox1.TabIndex = 1;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -235,7 +241,7 @@
             this.groupBox1.Controls.Add(this.checkedListBox1);
             this.groupBox1.Location = new System.Drawing.Point(8, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(250, 364);
+            this.groupBox1.Size = new System.Drawing.Size(250, 236);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Body Parts(Multiple choices)";
@@ -287,11 +293,74 @@
             this.stateTextBox.Size = new System.Drawing.Size(439, 22);
             this.stateTextBox.TabIndex = 38;
             // 
+            // selectAllRadioBtn
+            // 
+            this.selectAllRadioBtn.AutoSize = true;
+            this.selectAllRadioBtn.Location = new System.Drawing.Point(6, 19);
+            this.selectAllRadioBtn.Name = "selectAllRadioBtn";
+            this.selectAllRadioBtn.Size = new System.Drawing.Size(135, 26);
+            this.selectAllRadioBtn.TabIndex = 2;
+            this.selectAllRadioBtn.TabStop = true;
+            this.selectAllRadioBtn.Text = "Select All";
+            this.selectAllRadioBtn.UseVisualStyleBackColor = true;
+            this.selectAllRadioBtn.CheckedChanged += new System.EventHandler(this.selectAllRadioBtn_CheckedChanged);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox5.Controls.Add(this.lowerBodyRadioBtn);
+            this.groupBox5.Controls.Add(this.upperBodyRadioBtn);
+            this.groupBox5.Controls.Add(this.unselectAllRadioBtn);
+            this.groupBox5.Controls.Add(this.selectAllRadioBtn);
+            this.groupBox5.Location = new System.Drawing.Point(8, 250);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(250, 122);
+            this.groupBox5.TabIndex = 3;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Shortcut";
+            // 
+            // unselectAllRadioBtn
+            // 
+            this.unselectAllRadioBtn.AutoSize = true;
+            this.unselectAllRadioBtn.Location = new System.Drawing.Point(6, 45);
+            this.unselectAllRadioBtn.Name = "unselectAllRadioBtn";
+            this.unselectAllRadioBtn.Size = new System.Drawing.Size(155, 26);
+            this.unselectAllRadioBtn.TabIndex = 3;
+            this.unselectAllRadioBtn.TabStop = true;
+            this.unselectAllRadioBtn.Text = "Unselect All";
+            this.unselectAllRadioBtn.UseVisualStyleBackColor = true;
+            this.unselectAllRadioBtn.CheckedChanged += new System.EventHandler(this.unselectAllRadioBtn_CheckedChanged);
+            // 
+            // upperBodyRadioBtn
+            // 
+            this.upperBodyRadioBtn.AutoSize = true;
+            this.upperBodyRadioBtn.Location = new System.Drawing.Point(6, 71);
+            this.upperBodyRadioBtn.Name = "upperBodyRadioBtn";
+            this.upperBodyRadioBtn.Size = new System.Drawing.Size(205, 26);
+            this.upperBodyRadioBtn.TabIndex = 4;
+            this.upperBodyRadioBtn.TabStop = true;
+            this.upperBodyRadioBtn.Text = "Select Upper Body";
+            this.upperBodyRadioBtn.UseVisualStyleBackColor = true;
+            this.upperBodyRadioBtn.CheckedChanged += new System.EventHandler(this.upperBodyRadioBtn_CheckedChanged);
+            // 
+            // lowerBodyRadioBtn
+            // 
+            this.lowerBodyRadioBtn.AutoSize = true;
+            this.lowerBodyRadioBtn.Location = new System.Drawing.Point(6, 96);
+            this.lowerBodyRadioBtn.Name = "lowerBodyRadioBtn";
+            this.lowerBodyRadioBtn.Size = new System.Drawing.Size(205, 26);
+            this.lowerBodyRadioBtn.TabIndex = 5;
+            this.lowerBodyRadioBtn.TabStop = true;
+            this.lowerBodyRadioBtn.Text = "Select Lower Body";
+            this.lowerBodyRadioBtn.UseVisualStyleBackColor = true;
+            this.lowerBodyRadioBtn.CheckedChanged += new System.EventHandler(this.lowerBodyRadioBtn_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(1003, 532);
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
@@ -318,6 +387,8 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,6 +416,11 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.TextBox stateTextBox;
+        private System.Windows.Forms.RadioButton selectAllRadioBtn;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.RadioButton unselectAllRadioBtn;
+        private System.Windows.Forms.RadioButton upperBodyRadioBtn;
+        private System.Windows.Forms.RadioButton lowerBodyRadioBtn;
     }
 }
 

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="NCKUEE Light Dance Design GUI.exe" version="1.0.0.5" publicKeyToken="b2e53be00445e863" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="dancing.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="NCKUEE Light Dance Design GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="NCKUEE Light Dance Design GUI.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AxInterop.WMPLib.dll" size="61440">
+      <assemblyIdentity name="AxInterop.WMPLib" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>fPFBh30ZM0l6zhfB0hlMAtUQGMe2Rsci8jn8+0hCY7o=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NCKUEE Light Dance Design GUI.exe" size="56224">
+      <assemblyIdentity name="NCKUEE Light Dance Design GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>3GPsfAHgQBgUPLeAdcQcMzHBEdDzqVRF4CTKv9hsRXU=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="dancing.ico" size="14115">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>qI9F3HEIn/Kutr5srH1GQkOcVQ6nrMAIoV3L5YGgb3U=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="NCKUEE Light Dance Design GUI.exe.config" size="189">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>R+Wg8QGvQVHX8T0ta/qbhH1bXkqY0fRnS3wBV3J0bN8=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=URBAO\User" issuerKeyHash="44ac5a799a5f6c2e16bb983797349e5b9dd903ee" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>1vxoQygT1mllVb6Di7DMfANScDwD3TO1u7Pn0mxi4NY=</DigestValue></Reference></SignedInfo><SignatureValue>QknIs5FK+kwvoGb572Nv3pXAlGxSSambuban09dY8HOsGz2ZgS3cEX07RSaEP3XCQvwnFGpOAzUA46SDGH1e1whXcSG/jX1JuZIR+8hoIWL3mJhs/7kBAfhLgiVtacdNHszZGbBDjjXssLBAqbrQdVcgk7fvivbrF03WhehUbv4=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>w3SFqdbusvFF9dkxSdGHxbmNVZQP7ysmD2Mf4ckgZPbDPHx1TQ3kcuBLGroUMbidcZxi5+VAKBIYzVxHGZXLo1Jsf5yCeZaxznJcKXjkDrLGENVbkGOqLEi1BSx4hSHzbBP7jctOmYazdU2BvXnQ3iJd6qOglhBhvraLbEVGpIk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="d6e0626cd2e7b3bbb533dd033c7052037cccb08b83be556569d613284368fcd6" Description="" Url=""><as:assemblyIdentity name="NCKUEE Light Dance Design GUI.exe" version="1.0.0.5" publicKeyToken="b2e53be00445e863" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=URBAO\User</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>UDg7Ww2B/qwB+eG35FWIbXC4euH80H2BCBLvhn+i5Ps=</DigestValue></Reference></SignedInfo><SignatureValue>l9I8TgBXNRcWTEaMODw6sWkvxjjpD1ypiEHQvtwsj5C7kVPlzWvZuiTPaodY66ZWODAdBoAp2JVcw8F8sichsbOBw2Dg+73VtazIlOl5Hw4lhZroibro8+yLhsZyeF2M3uivUT1y386WSb+0FNduonBzvfFRz0fAwynh1G/dUyU=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>w3SFqdbusvFF9dkxSdGHxbmNVZQP7ysmD2Mf4ckgZPbDPHx1TQ3kcuBLGroUMbidcZxi5+VAKBIYzVxHGZXLo1Jsf5yCeZaxznJcKXjkDrLGENVbkGOqLEi1BSx4hSHzbBP7jctOmYazdU2BvXnQ3iJd6qOglhBhvraLbEVGpIk=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIBwTCCASqgAwIBAgIQJ6YEvzCIlLFCuBWrfxu9DjANBgkqhkiG9w0BAQsFADAfMR0wGwYDVQQDHhQAVQBSAEIAQQBPAFwAVQBzAGUAcjAeFw0yMzA0MjQxMzI1MzVaFw0yNDA0MjMxOTI1MzVaMB8xHTAbBgNVBAMeFABVAFIAQgBBAE8AXABVAHMAZQByMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDdIWp1u6y8UX12TFJ0YfFuY1VlA/vKyYPYx/hySBk9sM8fHVNDeRy4EsauhQxuJ1xnGLn5UAoEhjNXEcZlcujUmx/nIJ5lrHOclwpeOQOssYQ1VuQY6osSLUFLHiFIfNsE/uNy06ZhrN1TYG9edDeIl3qo6CWEGG+totsRUakiQIDAQABMA0GCSqGSIb3DQEBCwUAA4GBAC5BCOzJ7b5gcg3BC0thY9duEADocwla+nKEJUPMWo0xwrL0luOoHsGgQFZHdNEW1IoKxgpZ/MH3XRbsY/rsSwZmPRUkHvrN+uCYdbFCwgH5uteWHAbxYNGVkBTJURyJsTqFPn1JJz5G1Nr8NQuqxbVJnTBhu7MYKMcVrykiG2nf</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>
