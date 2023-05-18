@@ -62,6 +62,8 @@ namespace GUI
         public Form1()
         {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
+
             // 各個區塊的顏色(改掉原本預設的白色(太醜了))
             this.BackColor=System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKGREY);
             dataSectionListBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
