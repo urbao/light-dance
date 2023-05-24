@@ -1,19 +1,26 @@
-﻿using AxWMPLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Messaging;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using NAudio.Gui;
+using NAudio.Midi;
+using NAudio.Utils;
+using NAudio.Wave;
+using NAudio.WaveFormRenderer;
 
 // 用來import音樂檔案(允許撥放音樂/讀取音樂長度/顯示現在時間)
-using WMPLib;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
@@ -23,12 +30,16 @@ namespace GUI
         // Global Variable
         // 有音檔位置, wpm, 預覽畫面的line...
         private string musicFilePath;
-        private WMPLib.WindowsMediaPlayer wmp = new WMPLib.WindowsMediaPlayer();
         private List<string> chosedBodyPart=new List<string>();
         private string chosedLedMode = "";
         private int lastChosedLedModeIdx = -1;
         //private string chosedHexColor="";
-        bool isPlayingAudio = false;
+        WaveOutEvent waveOutEvent=new WaveOutEvent();
+        AudioFileReader audioFileReader;
+        TimeSpan totalTime;
+        TimeSpan currTime;
+        private Pen linePen = new Pen(Color.White, 2);
+
 
         /* ----- 以下的global參數可以視情況做調整 -----*/
         // 可以操控的LED燈條部位
@@ -75,7 +86,6 @@ namespace GUI
             checkedListBox2.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             checkedListBox2.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             checkedListBox2.Font = new System.Drawing.Font("Consolas", 10);
-            trackBarTimeLine.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             currTimeTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
             totalTimeTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKWHITE);
             playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
@@ -96,6 +106,7 @@ namespace GUI
             unselectAllRadioBtn.Font = new System.Drawing.Font("Consolas", 10);
             upperBodyRadioBtn.Font = new System.Drawing.Font("Consolas", 10);
             lowerBodyRadioBtn.Font = new System.Drawing.Font("Consolas", 10);
+            pictureBox1.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             //colorPanel.BackColor = System.Drawing.ColorTranslator.FromHtml("#000000");
 
             // 列出所有可以控制的身體部位
@@ -108,9 +119,12 @@ namespace GUI
             checkedListBox2.Items.AddRange(available_led_modes);
             checkedListBox2.CheckOnClick = true;
 
-            // 尚未import music之前，預設總時間為00:00
-            totalTimeTextBox.Text = string.Format("{0:00}:{1:00}", 0, 0);
-
+            // 尚未import music之前，預設時間為00:00.000
+            totalTimeTextBox.Text = string.Format("{0:00}:{1:00}.{2:000}", 0, 0, 0);
+            currTimeTextBox.Text = string.Format("{0:00}:{1:00}.{2:000}", 0, 0, 0);
+            
+            // 可以應付大部分的音樂(100BPM~140BPM)
+            timer1.Interval = 400; 
 
             // 把預設得色塊顏色指定給對應的label
             /*colorBtn1.BackColor = ColorTranslator.FromHtml(DEFAULT_COLOR_1);
@@ -159,43 +173,60 @@ namespace GUI
         private void importBtn_Click(object sender, EventArgs e)
         {
             OpenFileDialog importMusicFile = new OpenFileDialog();
-            importMusicFile.Filter = "Audio files| *.mp3; *.wav; *.wma";
+            importMusicFile.Filter = "MP3 files only| *.mp3";
             if(importMusicFile.ShowDialog()== DialogResult.OK )
             {
-                // 先用openDialog得到音檔位置，並將其存到wmp.URL
+                // 先用openDialog得到音檔位置，並將其存到musicFilePath
                 musicFilePath=importMusicFile.FileName;
-                wmp.URL = musicFilePath;
-                // 用WMPLib得到音檔的長度和名字，將資訊印在textBox上面
-                WMPLib.IWMPMedia media= wmp.newMedia(musicFilePath);
-                double durationSeconds = media.duration;
-                trackBarTimeLine.Maximum=(int)durationSeconds;
-                trackBarTimeLine.Minimum = 0;
-                int minute = trackBarTimeLine.Maximum / 60;
-                int second = trackBarTimeLine.Maximum % 60;
-                totalTimeTextBox.Text = string.Format("{0:00}:{1:00}", minute, second);
-                trackBarTimeLine.Value = 0;
-                currTimeTextBox.Text = trackBarTimeLine.Value.ToString();
-                stateTextBox.Text = "Successfully import "+wmp.URL;
+
+                // 展示出波型(用rms值展現，並把波型存給pictureBox1)
+                RmsPeakProvider rmsPeakProvider = new RmsPeakProvider(200); // e.g. 200
+                StandardWaveFormRendererSettings myRendererSettings = new StandardWaveFormRendererSettings();
+                myRendererSettings.Width = pictureBox1.Width;
+                myRendererSettings.TopHeight = pictureBox1.Height / 2;
+                myRendererSettings.BottomHeight = pictureBox1.Height / 2;
+                myRendererSettings.BackgroundColor = Color.Transparent;
+                myRendererSettings.TopPeakPen = new Pen(Color.Green);
+                myRendererSettings.BottomPeakPen = new Pen(Color.DarkGreen);
+                WaveFormRenderer renderer = new WaveFormRenderer();
+                WaveStream stream = new AudioFileReader(musicFilePath);
+                totalTime=stream.TotalTime;
+                Image image = renderer.Render(stream, rmsPeakProvider, myRendererSettings);
+                pictureBox1.Image = image;
+
+                // 讀取歌曲長度，並將其更新至totalTimeTextBox
+                var reader = new MediaFoundationReader(musicFilePath);
+                int durationMillisSeconds = (int)reader.TotalTime.TotalMilliseconds;
+                int minute = durationMillisSeconds / 60000;
+                int second = durationMillisSeconds / 1000 % 60;
+                int millis = durationMillisSeconds % 1000;
+                totalTimeTextBox.Text = string.Format("{0:00}:{1:00}.{2:000}", minute, second, millis);
+
+                // 把檔案讀進來，中止之前的撥放狀態，重新開始並自動撥放
+                stateTextBox.Text = "Successfully import " + musicFilePath;
+                audioFileReader = new AudioFileReader(musicFilePath);
+                waveOutEvent.Stop();
+                waveOutEvent.Init(audioFileReader);
+                playBtn.Text = "Play";
+                playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
             }
-            playBtn.Text = "Pause";
-            playBtn.BackColor = Color.LightPink;
         }
 
         private void playBtn_Click(object sender, EventArgs e)
         {
-            if (isPlayingAudio == true)
+            // 防止沒有音樂也可以點撥放鍵
+            if (audioFileReader==null) return;
+            if (waveOutEvent.PlaybackState==PlaybackState.Playing)
             {
-                wmp.controls.pause();
+                waveOutEvent.Pause();
                 timer1.Stop();
-                isPlayingAudio = false;
                 playBtn.Text = "Play";
                 playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
             }
             else
             {
-                wmp.controls.play();
+                waveOutEvent.Play();
                 timer1.Start();
-                isPlayingAudio = true;
                 playBtn.Text = "Pause";
                 playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_PINK);
             }
@@ -203,22 +234,36 @@ namespace GUI
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            trackBarTimeLine.Value = (int)wmp.controls.currentPosition;
-            currTimeTextBox.Text = TimeSpan.FromSeconds(trackBarTimeLine.Value).ToString(@"mm\:ss");
-        }
-
-        private void trackBarTimeLine_Scroll(object sender, EventArgs e)
-        {
-            wmp.controls.currentPosition = trackBarTimeLine.Value;
-            currTimeTextBox.Text = TimeSpan.FromSeconds(wmp.controls.currentPosition).ToString(@"mm\:ss");
+            // 確定真的有放歌才開始更新時間
+            if (waveOutEvent != null && waveOutEvent.PlaybackState == PlaybackState.Playing)
+            {
+                currTime = waveOutEvent.GetPositionTimeSpan();
+                string formattedTime = currTime.ToString(@"mm\:ss\.fff");
+                currTimeTextBox.Text = formattedTime;
+                // 更新現在時間線
+                pictureBox1.Refresh();
+                double percentage = currTime.TotalMilliseconds / totalTime.TotalMilliseconds;
+                int linePosition = (int)(percentage * pictureBox1.Width);
+                using (Graphics g = pictureBox1.CreateGraphics())
+                {
+                    g.DrawLine(linePen, linePosition, 0, linePosition, pictureBox1.Height);
+                }
+            }
+            // 沒有在放歌或是歌已經放完，把play button改回
+            else
+            {
+                playBtn.Text = "Play";
+                playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
+            }
         }
 
         private void addBtn_Click(object sender, EventArgs e)
         {
             // addedText: 寫入檔案的資料(時間(s)+部位+RGB)
             // 有做foolproof: 防止沒有選擇部位: 印出警示提醒
-            // 或是RGB沒給值: 預設為(0,0,0)
-            int currTime=(int)wmp.controls.currentPosition;
+            TimeSpan timeSpan = TimeSpan.ParseExact(currTimeTextBox.Text, @"mm\:ss\.fff", CultureInfo.InvariantCulture);
+            int totalMillis = (int)(timeSpan.TotalMilliseconds);
+            double currTime = totalMillis * 0.001;
             if (chosedBodyPart.Count == 0)
             {
                 MessageBox.Show("The body parts cannot be empty :(", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -234,7 +279,7 @@ namespace GUI
             foreach(string bodyPart in chosedBodyPart)
             {
                 // 把dataSectionListBox的內容印的整齊一點
-                int timeMaxLength = 5;
+                int timeMaxLength = 9;
                 int bodyPartMaxLength = 11;
                 int ledModeMaxLength = 12;
                 string prettyCurrTime=(currTime.ToString()).PadLeft(timeMaxLength, ' ');
@@ -252,8 +297,8 @@ namespace GUI
             allItems.Sort((s1, s2) => {
                 s1.TrimStart();
                 s2.TrimStart();
-                int time1 = int.Parse(s1.Split('|')[0]);
-                int time2 = int.Parse(s2.Split('|')[0]);
+                double time1 = double.Parse(s1.Split('|')[0]);
+                double time2 = double.Parse(s2.Split('|')[0]);
                 return time1.CompareTo(time2);
             });
             dataSectionListBox.Items.Clear();
