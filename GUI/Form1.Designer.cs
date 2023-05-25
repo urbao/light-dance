@@ -41,7 +41,7 @@
             this.saveFileBtn = new System.Windows.Forms.Button();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.dataSectionListBox = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.deleteBtn = new System.Windows.Forms.Button();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.resetBtn = new System.Windows.Forms.Button();
             this.checkedListBox2 = new System.Windows.Forms.CheckedListBox();
@@ -182,18 +182,18 @@
             this.dataSectionListBox.Size = new System.Drawing.Size(445, 278);
             this.dataSectionListBox.TabIndex = 34;
             // 
-            // button1
+            // deleteBtn
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button1.BackColor = System.Drawing.Color.Fuchsia;
-            this.button1.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(639, 346);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 35);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "Delete";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.deleteBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.deleteBtn.BackColor = System.Drawing.Color.Fuchsia;
+            this.deleteBtn.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.deleteBtn.Location = new System.Drawing.Point(639, 346);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(95, 35);
+            this.deleteBtn.TabIndex = 35;
+            this.deleteBtn.Text = "Delete";
+            this.deleteBtn.UseVisualStyleBackColor = false;
+            this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
             // 
             // resetBtn
             // 
@@ -290,7 +290,7 @@
             this.selectAllRadioBtn.TabStop = true;
             this.selectAllRadioBtn.Text = "Select All";
             this.selectAllRadioBtn.UseVisualStyleBackColor = true;
-            this.selectAllRadioBtn.CheckedChanged += new System.EventHandler(this.selectAllRadioBtn_CheckedChanged);
+            this.selectAllRadioBtn.Click += new System.EventHandler(this.selectAllRadioBtn_Click);
             // 
             // groupBox5
             // 
@@ -316,7 +316,7 @@
             this.lowerBodyRadioBtn.TabStop = true;
             this.lowerBodyRadioBtn.Text = "Select Lower Body";
             this.lowerBodyRadioBtn.UseVisualStyleBackColor = true;
-            this.lowerBodyRadioBtn.CheckedChanged += new System.EventHandler(this.lowerBodyRadioBtn_CheckedChanged);
+            this.lowerBodyRadioBtn.Click += new System.EventHandler(this.lowerBodyRadioBtn_Click);
             // 
             // upperBodyRadioBtn
             // 
@@ -328,7 +328,7 @@
             this.upperBodyRadioBtn.TabStop = true;
             this.upperBodyRadioBtn.Text = "Select Upper Body";
             this.upperBodyRadioBtn.UseVisualStyleBackColor = true;
-            this.upperBodyRadioBtn.CheckedChanged += new System.EventHandler(this.upperBodyRadioBtn_CheckedChanged);
+            this.upperBodyRadioBtn.Click += new System.EventHandler(this.upperBodyRadioBtn_Click);
             // 
             // unselectAllRadioBtn
             // 
@@ -340,7 +340,7 @@
             this.unselectAllRadioBtn.TabStop = true;
             this.unselectAllRadioBtn.Text = "Unselect All";
             this.unselectAllRadioBtn.UseVisualStyleBackColor = true;
-            this.unselectAllRadioBtn.CheckedChanged += new System.EventHandler(this.unselectAllRadioBtn_CheckedChanged);
+            this.unselectAllRadioBtn.Click += new System.EventHandler(this.unselectAllRadioBtn_Click);
             // 
             // pictureBox1
             // 
@@ -352,6 +352,9 @@
             this.pictureBox1.Size = new System.Drawing.Size(987, 136);
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseDown);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
+            this.pictureBox1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseUp);
             // 
             // Form1
             // 
@@ -365,7 +368,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.resetBtn);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.deleteBtn);
             this.Controls.Add(this.saveFileBtn);
             this.Controls.Add(this.addBtn);
             this.Controls.Add(this.playBtn);
@@ -404,7 +407,7 @@
         private System.Windows.Forms.Button saveFileBtn;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.ListBox dataSectionListBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.Button resetBtn;
         private System.Windows.Forms.CheckedListBox checkedListBox2;

@@ -1,21 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Messaging;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using NAudio.Gui;
-using NAudio.Midi;
 using NAudio.Utils;
 using NAudio.Wave;
 using NAudio.WaveFormRenderer;
@@ -36,9 +26,13 @@ namespace GUI
         //private string chosedHexColor="";
         WaveOutEvent waveOutEvent=new WaveOutEvent();
         AudioFileReader audioFileReader;
+        // 計算現在時間線位置
         TimeSpan totalTime;
         TimeSpan currTime;
-        private Pen linePen = new Pen(Color.White, 2);
+        // 畫出時間線，以及藉由滑鼠更新位置
+        private Pen linePen = new Pen(Color.White, 1);
+        private int linePosition = 0;
+        private bool isDraggingLine = false;
 
 
         /* ----- 以下的global參數可以視情況做調整 -----*/
@@ -175,7 +169,7 @@ namespace GUI
             OpenFileDialog importMusicFile = new OpenFileDialog();
             importMusicFile.Filter = "MP3 files only| *.mp3";
             if(importMusicFile.ShowDialog()== DialogResult.OK )
-            {
+            { 
                 // 先用openDialog得到音檔位置，並將其存到musicFilePath
                 musicFilePath=importMusicFile.FileName;
 
@@ -189,9 +183,10 @@ namespace GUI
                 myRendererSettings.TopPeakPen = new Pen(Color.Green);
                 myRendererSettings.BottomPeakPen = new Pen(Color.DarkGreen);
                 WaveFormRenderer renderer = new WaveFormRenderer();
-                WaveStream stream = new AudioFileReader(musicFilePath);
-                totalTime=stream.TotalTime;
-                Image image = renderer.Render(stream, rmsPeakProvider, myRendererSettings);
+                audioFileReader = new AudioFileReader(musicFilePath);
+
+                totalTime = audioFileReader.TotalTime;
+                Image image = renderer.Render(audioFileReader, rmsPeakProvider, myRendererSettings);
                 pictureBox1.Image = image;
 
                 // 讀取歌曲長度，並將其更新至totalTimeTextBox
@@ -209,6 +204,8 @@ namespace GUI
                 waveOutEvent.Init(audioFileReader);
                 playBtn.Text = "Play";
                 playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
+                // 還沒開始放歌，所以先關掉timer1
+                timer1.Stop();
             }
         }
 
@@ -237,23 +234,39 @@ namespace GUI
             // 確定真的有放歌才開始更新時間
             if (waveOutEvent != null && waveOutEvent.PlaybackState == PlaybackState.Playing)
             {
-                currTime = waveOutEvent.GetPositionTimeSpan();
+                currTime = audioFileReader.CurrentTime;
                 string formattedTime = currTime.ToString(@"mm\:ss\.fff");
                 currTimeTextBox.Text = formattedTime;
                 // 更新現在時間線
                 pictureBox1.Refresh();
                 double percentage = currTime.TotalMilliseconds / totalTime.TotalMilliseconds;
-                int linePosition = (int)(percentage * pictureBox1.Width);
+                linePosition = (int)(percentage * pictureBox1.Width);
                 using (Graphics g = pictureBox1.CreateGraphics())
                 {
                     g.DrawLine(linePen, linePosition, 0, linePosition, pictureBox1.Height);
                 }
             }
-            // 沒有在放歌或是歌已經放完，把play button改回
-            else
+            // 歌已經放完，把play button改回
+            else if(waveOutEvent!=null&&audioFileReader!=null)
             {
+                // 把音樂位置重置
+                audioFileReader.Position = 0 * audioFileReader.WaveFormat.AverageBytesPerSecond;
+                // 重畫時間線
+                linePosition = (int)audioFileReader.Position;
+                pictureBox1.Refresh();
+                using (Graphics g = pictureBox1.CreateGraphics())
+                {
+                    g.DrawLine(linePen, linePosition, 0, linePosition, pictureBox1.Height);
+                }
+                waveOutEvent.Init(audioFileReader);
+                // 更新時間currTimeTextBox
+                currTime = waveOutEvent.GetPositionTimeSpan();
+                string formattedTime = currTime.ToString(@"mm\:ss\.fff");
+                currTimeTextBox.Text = formattedTime;
                 playBtn.Text = "Play";
                 playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_CYAN);
+                // 關掉timer1
+                timer1.Stop();
             }
         }
 
@@ -342,7 +355,7 @@ namespace GUI
                         string[] data=item.Split('|');
                         // data[]={currTime, bodyPart, Mode}
                         // 先把currTime轉成millisecond
-                        int timeSec = Int32.Parse(data[0]);
+                        double timeSec = double.Parse(data[0]);
                         string timeMillis = (timeSec * 1000).ToString();
 
                         // 再把bodyPart轉成相應0~6代號
@@ -378,10 +391,11 @@ namespace GUI
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void deleteBtn_Click(object sender, EventArgs e)
         {
             // 刪掉在listBox1中選取的line
             string selectedLine=(string)dataSectionListBox.SelectedItem;
+            int selected_idx = dataSectionListBox.SelectedIndex;
             if(selectedLine == null)
             {
                 MessageBox.Show("No line is chosed in data section :(", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -392,6 +406,14 @@ namespace GUI
                 string[] splitStr=selectedLine.Split('|');
                 string showingMsg = splitStr[0]+" | " + splitStr[1]+" | " + splitStr[2];
                 stateTextBox.Text = "[Delete]" + selectedLine;
+                // 把選取的index設為刪除的前一個或後一個(視情況決定)
+                if(selected_idx==0)selected_idx=selected_idx+1;
+                else selected_idx=selected_idx-1;
+                // 確保新的selected_idx有合理資料存在於dataSectionListBox
+                if (dataSectionListBox.Items.Count > selected_idx)
+                {
+                    dataSectionListBox.SetSelected(selected_idx, true);
+                }
             }
         }
 
@@ -432,11 +454,12 @@ namespace GUI
         }
 
         // 所有Body Parts都選
-        private void selectAllRadioBtn_CheckedChanged(object sender, EventArgs e)
+        private void selectAllRadioBtn_Click(object sender, EventArgs e)
         {
             unselectAllRadioBtn.Checked = false;
             upperBodyRadioBtn.Checked= false;
             lowerBodyRadioBtn.Checked= false;
+            selectAllRadioBtn.Checked = true;
             chosedBodyPart.Clear();
             for(int i = 0; i < checkedListBox1.Items.Count; i++)
             {
@@ -447,11 +470,12 @@ namespace GUI
         }
 
         // 所有Body Parts都不選
-        private void unselectAllRadioBtn_CheckedChanged(object sender, EventArgs e)
+        private void unselectAllRadioBtn_Click(object sender, EventArgs e)
         {
             selectAllRadioBtn.Checked = false;
             upperBodyRadioBtn.Checked = false;
             lowerBodyRadioBtn.Checked = false;
+            unselectAllRadioBtn.Checked = true;
             chosedBodyPart.Clear();
             for(int i = 0; i < checkedListBox1.Items.Count; i++)
             {
@@ -461,11 +485,12 @@ namespace GUI
         }
 
         // 只選上半身Body Parts(頭/手/身體)
-        private void upperBodyRadioBtn_CheckedChanged(object sender, EventArgs e)
+        private void upperBodyRadioBtn_Click(object sender, EventArgs e)
         {
             selectAllRadioBtn.Checked = false;
             unselectAllRadioBtn.Checked = false;
             lowerBodyRadioBtn.Checked = false;
+            upperBodyRadioBtn.Checked = true;
             chosedBodyPart.Clear();
             for(int i=0;i<4;i++)
             {
@@ -480,11 +505,12 @@ namespace GUI
         }
 
         // 只選下半身Body Parts(腳/鞋子)
-        private void lowerBodyRadioBtn_CheckedChanged(object sender, EventArgs e)
+        private void lowerBodyRadioBtn_Click(object sender, EventArgs e)
         {
             selectAllRadioBtn.Checked = false;
             unselectAllRadioBtn.Checked = false;
             upperBodyRadioBtn.Checked = false;
+            lowerBodyRadioBtn.Checked = true;
             chosedBodyPart.Clear();
             for (int i = 0; i < 4; i++)
             {
@@ -496,6 +522,55 @@ namespace GUI
                 chosedBodyPart.Add(checkedListBox1.Items[i].ToString());
             }
             checkedListBox1.Refresh();
+        }
+
+        // 判斷是否有點到時間線，代表使用者是否要改變時間
+        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            int lineRange = 5; // 可容忍誤差
+            if (Math.Abs(e.X - linePosition) <= lineRange)
+            {
+                isDraggingLine = true;
+            }
+        }
+
+        // 判斷使用者是否有滑動滑鼠，如果有，改變時間線、播放時間和顯示時間
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDraggingLine)
+            {
+                timer1.Stop();
+                linePosition = e.X;
+                // 重新畫時間線
+                pictureBox1.Refresh();
+                using (Graphics g = pictureBox1.CreateGraphics())
+                {
+                    g.DrawLine(linePen, linePosition, 0, linePosition, pictureBox1.Height);
+                }
+
+                // 更新音檔播放時間(依據時間比例計算位置)
+                TimeSpan totalDuration = audioFileReader.TotalTime;
+                double percentage = (double)linePosition / (double)pictureBox1.Width;
+                double update_time=totalDuration.TotalSeconds * percentage;
+
+                // 暫停並更新播放時間(用audioFileReader.Position控制位置)
+                waveOutEvent.Pause();
+                if((long)(update_time * audioFileReader.WaveFormat.AverageBytesPerSecond)<0)
+                    audioFileReader.Position = 0;
+                else audioFileReader.Position = (long)(update_time * audioFileReader.WaveFormat.AverageBytesPerSecond);
+            }
+        }
+
+        // 使用者放開滑鼠，結束dragging
+        private void pictureBox1_MouseUp(object sender, MouseEventArgs e)
+        {
+            isDraggingLine=false;
+            // 自動開始撥放音樂
+            waveOutEvent.Play();
+            timer1.Start();
+            playBtn.Text = "Pause";
+            playBtn.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_PINK);
+            stateTextBox.Text = "Jumped to "+audioFileReader.CurrentTime.ToString(@"mm\:ss\.fff")+"s";
         }
     }
 }
