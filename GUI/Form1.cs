@@ -10,8 +10,6 @@ using NAudio.Utils;
 using NAudio.Wave;
 using NAudio.WaveFormRenderer;
 
-// 用來import音樂檔案(允許撥放音樂/讀取音樂長度/顯示現在時間)
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GUI
 {
