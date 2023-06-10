@@ -1,0 +1,15 @@
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\Control_GUI.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\Control_GUI.csproj.SuggestedBindingRedirects.cache
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\Control_GUI.Properties.Resources.resources
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\Control_GUI.csproj.GenerateResource.cache
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\Control_GUI.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\Control_GUI.Form1.resources
+C:\Users\User\Desktop\light-dance\Control_GUI\bin\Debug\NCKUEE Light Dance Control GUI.exe.config
+C:\Users\User\Desktop\light-dance\Control_GUI\bin\Debug\NCKUEE Light Dance Control GUI.exe.manifest
+C:\Users\User\Desktop\light-dance\Control_GUI\bin\Debug\NCKUEE Light Dance Control GUI.application
+C:\Users\User\Desktop\light-dance\Control_GUI\bin\Debug\NCKUEE Light Dance Control GUI.exe
+C:\Users\User\Desktop\light-dance\Control_GUI\bin\Debug\NCKUEE Light Dance Control GUI.pdb
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\NCKUEE Light Dance Control GUI.exe.manifest
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\NCKUEE Light Dance Control GUI.application
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\NCKUEE Light Dance Control GUI.exe
+C:\Users\User\Desktop\light-dance\Control_GUI\obj\Debug\NCKUEE Light Dance Control GUI.pdb

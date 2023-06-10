@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NCKUEE Light Dance", "NCKUEE Light Dance.csproj", "{E206081A-AC49-4DB7-B231-E81BD24E7465}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Design_GUI", "Design_GUI.csproj", "{E206081A-AC49-4DB7-B231-E81BD24E7465}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
