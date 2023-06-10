@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NCKUEE Light Dance Control GUI.exe" size="31136">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NCKUEE Light Dance Control GUI.exe" size="30112">
       <assemblyIdentity name="NCKUEE Light Dance Control GUI" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>6IIZUzKNa8Tc4ryBCdGgY3JYxHv/Gvup243lhGxmRGE=</dsig:DigestValue>
+        <dsig:DigestValue>Im0CiXygcihSA8bwzRwskh8axk+ab+26hCnh/hlh3TU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
