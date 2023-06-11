@@ -50,7 +50,7 @@ namespace Control_GUI
             stageCntTextBox.BackColor= System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             stageCntTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             stageCntTextBox.Font = new System.Drawing.Font("Consolas", 11);
-            stageCntTextBox.Text = "[Stages Count]";
+            stageCntTextBox.Text = "[Scenes Count]";
             serialPortTextBox.BackColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             serialPortTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             serialPortTextBox.Font = new System.Drawing.Font("Consolas", 11);
@@ -104,7 +104,7 @@ namespace Control_GUI
                 if (button != null)
                 {
                     button.Font = new System.Drawing.Font("Consolas", 13);
-                    button.Text = "Stage " + i.ToString();
+                    button.Text = "Scene " + i.ToString();
                     button.BackColor= System.Drawing.ColorTranslator.FromHtml(STAGE_BTN_DISABLE);
                     button.ForeColor= System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKGREY);
                 }
@@ -126,7 +126,7 @@ namespace Control_GUI
         {
             STAGE_CNT = stageComboBox.SelectedIndex+1;
             string currTime=get_curr_time();
-            statsListBox.Items.Add(currTime+"update stages count to "+STAGE_CNT.ToString());
+            statsListBox.Items.Add(currTime+"update scenes count to "+STAGE_CNT.ToString());
             statsListBox.TopIndex = statsListBox.Items.Count - 1;
             // make the button light up
             for (int i = 1; i <= MAX_STAGE_CNT; i++)
@@ -187,14 +187,14 @@ namespace Control_GUI
             if (STAGE_CNT == 0)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "need to select stages count to continue");
+                statsListBox.Items.Add(currTime + "need to select scenes count to continue");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
             else if(STAGE_CNT < 1)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "this stage is disabled");
+                statsListBox.Items.Add(currTime + "this scene is disabled");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
@@ -215,7 +215,7 @@ namespace Control_GUI
                 // send signal via serialPort
                 serialPort1.WriteLine("1");
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "send the stage 1 signal");
+                statsListBox.Items.Add(currTime + "send the scene 1 signal");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
             }
         }
@@ -227,14 +227,14 @@ namespace Control_GUI
             if (STAGE_CNT == 0)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "need to select stages count to continue");
+                statsListBox.Items.Add(currTime + "need to select scenes count to continue");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
             else if (STAGE_CNT < 2)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "this stage is disabled");
+                statsListBox.Items.Add(currTime + "this scene is disabled");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
@@ -255,7 +255,7 @@ namespace Control_GUI
                 // send signal via serialPort
                 serialPort1.WriteLine("2");
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "send the stage 2 signal");
+                statsListBox.Items.Add(currTime + "send the scene 2 signal");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
             }
         }
@@ -267,14 +267,14 @@ namespace Control_GUI
             if (STAGE_CNT == 0)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "need to select stages count to continue");
+                statsListBox.Items.Add(currTime + "need to select scenes count to continue");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
             else if (STAGE_CNT < 3)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "this stage is disabled");
+                statsListBox.Items.Add(currTime + "this scene is disabled");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
@@ -295,7 +295,7 @@ namespace Control_GUI
                 // send signal via serialPort
                 serialPort1.WriteLine("3");
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "send the stage 3 signal");
+                statsListBox.Items.Add(currTime + "send the scene 3 signal");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
             }
         }
@@ -307,14 +307,14 @@ namespace Control_GUI
             if (STAGE_CNT == 0)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "need to select stages count to continue");
+                statsListBox.Items.Add(currTime + "need to select scenes count to continue");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
             else if (STAGE_CNT < 4)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "this stage is disabled");
+                statsListBox.Items.Add(currTime + "this scene is disabled");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
@@ -334,7 +334,7 @@ namespace Control_GUI
                 // send signal via serialPort
                 serialPort1.WriteLine("4");
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "send the stage 4 signal");
+                statsListBox.Items.Add(currTime + "send the scene 4 signal");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
             }
         }
@@ -346,14 +346,14 @@ namespace Control_GUI
             if (STAGE_CNT == 0)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "need to select stages count to continue");
+                statsListBox.Items.Add(currTime + "need to select scenes count to continue");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
             else if (STAGE_CNT < 5)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "this stage is disabled");
+                statsListBox.Items.Add(currTime + "this scene is disabled");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
@@ -373,7 +373,7 @@ namespace Control_GUI
                 // send signal via serialPort
                 serialPort1.WriteLine("5");
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "send the stage 5 signal");
+                statsListBox.Items.Add(currTime + "send the scene 5 signal");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
             }
         }
@@ -385,14 +385,14 @@ namespace Control_GUI
             if (STAGE_CNT == 0)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "need to select stages count to continue");
+                statsListBox.Items.Add(currTime + "need to select scenes count to continue");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
             else if (STAGE_CNT < 6)
             {
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "this stage is disabled");
+                statsListBox.Items.Add(currTime + "this scene is disabled");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
                 return;
             }
@@ -412,7 +412,7 @@ namespace Control_GUI
                 // send signal via serialPort
                 serialPort1.WriteLine("6");
                 string currTime = get_curr_time();
-                statsListBox.Items.Add(currTime + "send the stage 6 signal");
+                statsListBox.Items.Add(currTime + "send the scene 6 signal");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
             }
         }
@@ -459,7 +459,7 @@ namespace Control_GUI
             catch (Exception ex)
             {
                 currTime = get_curr_time();
-                statsListBox.Items.Add(currTime+"error occurs with message {" + ex.Message+"}");
+                statsListBox.Items.Add(currTime+"error occurs when try to open port {" + ex.Message+"}");
                 // if port cannot be opened, reset SEL_PORT to empty string
                 SEL_PORT = "";
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
