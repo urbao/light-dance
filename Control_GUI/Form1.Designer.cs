@@ -49,7 +49,6 @@
             this.functionGroupBox = new System.Windows.Forms.GroupBox();
             this.scanPortBtn = new System.Windows.Forms.Button();
             this.clsBtn = new System.Windows.Forms.Button();
-            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.statsGroupBox.SuspendLayout();
             this.optionGroupBox.SuspendLayout();
             this.stageGroupBox.SuspendLayout();
@@ -79,7 +78,7 @@
             this.statsListBox.ItemHeight = 18;
             this.statsListBox.Location = new System.Drawing.Point(10, 30);
             this.statsListBox.Name = "statsListBox";
-            this.statsListBox.Size = new System.Drawing.Size(618, 972);
+            this.statsListBox.Size = new System.Drawing.Size(618, 936);
             this.statsListBox.TabIndex = 4;
             // 
             // optionGroupBox
@@ -92,7 +91,7 @@
             this.optionGroupBox.Controls.Add(this.stageComboBox);
             this.optionGroupBox.Location = new System.Drawing.Point(0, 0);
             this.optionGroupBox.Name = "optionGroupBox";
-            this.optionGroupBox.Size = new System.Drawing.Size(475, 402);
+            this.optionGroupBox.Size = new System.Drawing.Size(475, 388);
             this.optionGroupBox.TabIndex = 1;
             this.optionGroupBox.TabStop = false;
             this.optionGroupBox.Text = "Config";
@@ -218,7 +217,7 @@
             this.testBtn.Name = "testBtn";
             this.testBtn.Size = new System.Drawing.Size(364, 63);
             this.testBtn.TabIndex = 0;
-            this.testBtn.Text = "Send Test Signal";
+            this.testBtn.Text = "Stop";
             this.testBtn.UseVisualStyleBackColor = true;
             this.testBtn.Click += new System.EventHandler(this.testBtn_Click);
             // 
@@ -236,7 +235,7 @@
             // 
             // scanPortBtn
             // 
-            this.scanPortBtn.Location = new System.Drawing.Point(27, 113);
+            this.scanPortBtn.Location = new System.Drawing.Point(29, 74);
             this.scanPortBtn.Name = "scanPortBtn";
             this.scanPortBtn.Size = new System.Drawing.Size(422, 63);
             this.scanPortBtn.TabIndex = 1;
@@ -246,7 +245,7 @@
             // 
             // clsBtn
             // 
-            this.clsBtn.Location = new System.Drawing.Point(27, 252);
+            this.clsBtn.Location = new System.Drawing.Point(29, 213);
             this.clsBtn.Name = "clsBtn";
             this.clsBtn.Size = new System.Drawing.Size(422, 63);
             this.clsBtn.TabIndex = 0;
@@ -258,7 +257,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1111, 1050);
+            this.ClientSize = new System.Drawing.Size(1111, 1036);
             this.Controls.Add(this.functionGroupBox);
             this.Controls.Add(this.stageGroupBox);
             this.Controls.Add(this.optionGroupBox);
@@ -297,7 +296,6 @@
         private System.Windows.Forms.ComboBox serialPortComboBox;
         private System.Windows.Forms.TextBox serialPortTextBox;
         private System.Windows.Forms.Button scanPortBtn;
-        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
 

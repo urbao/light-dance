@@ -419,6 +419,8 @@ namespace Control_GUI
 
         private void scanPortBtn_Click(object sender, EventArgs e)
         {
+            // clear current existed port
+            serialPortComboBox.Items.Clear();
             // detect valid serial_port
             PORTS_LIST = SerialPort.GetPortNames();
             // no serial port is detected
@@ -453,7 +455,7 @@ namespace Control_GUI
             {
                 serialPort1.Open();
                 currTime= get_curr_time();
-                statsListBox.Items.Add(currTime + "successfully open [" + serialPort1.PortName.ToString() + "] serial port (Try to send test signal)");
+                statsListBox.Items.Add(currTime + "successfully open [" + serialPort1.PortName.ToString() + "] serial port (Try to send stop signal for test)");
                 statsListBox.TopIndex = statsListBox.Items.Count - 1;
             }
             catch (Exception ex)
@@ -497,7 +499,7 @@ namespace Control_GUI
                 // read all existing buffer data at once
                 string receivedData = sp.ReadExisting();
                 // Split the received data into lines
-                string[] lines = receivedData.Split('\n');
+                string[] lines = receivedData.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string line in lines)
                 {
                     DateTime currentTime = DateTime.Now;
