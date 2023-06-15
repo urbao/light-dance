@@ -45,7 +45,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.testBtn = new System.Windows.Forms.Button();
+            this.stopBtn = new System.Windows.Forms.Button();
             this.functionGroupBox = new System.Windows.Forms.GroupBox();
             this.scanPortBtn = new System.Windows.Forms.Button();
             this.clsBtn = new System.Windows.Forms.Button();
@@ -142,7 +142,7 @@
             this.stageGroupBox.Controls.Add(this.button3);
             this.stageGroupBox.Controls.Add(this.button2);
             this.stageGroupBox.Controls.Add(this.button1);
-            this.stageGroupBox.Controls.Add(this.testBtn);
+            this.stageGroupBox.Controls.Add(this.stopBtn);
             this.stageGroupBox.Location = new System.Drawing.Point(0, 193);
             this.stageGroupBox.Name = "stageGroupBox";
             this.stageGroupBox.Size = new System.Drawing.Size(475, 472);
@@ -211,15 +211,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // testBtn
+            // stopBtn
             // 
-            this.testBtn.Location = new System.Drawing.Point(47, 48);
-            this.testBtn.Name = "testBtn";
-            this.testBtn.Size = new System.Drawing.Size(364, 63);
-            this.testBtn.TabIndex = 0;
-            this.testBtn.Text = "Stop";
-            this.testBtn.UseVisualStyleBackColor = true;
-            this.testBtn.Click += new System.EventHandler(this.testBtn_Click);
+            this.stopBtn.Location = new System.Drawing.Point(47, 48);
+            this.stopBtn.Name = "stopBtn";
+            this.stopBtn.Size = new System.Drawing.Size(364, 63);
+            this.stopBtn.TabIndex = 0;
+            this.stopBtn.Text = "Stop";
+            this.stopBtn.UseVisualStyleBackColor = true;
+            this.stopBtn.Click += new System.EventHandler(this.testBtn_Click);
             // 
             // functionGroupBox
             // 
@@ -283,7 +283,7 @@
         private System.Windows.Forms.GroupBox stageGroupBox;
         private System.Windows.Forms.ComboBox stageComboBox;
         private System.Windows.Forms.TextBox stageCntTextBox;
-        private System.Windows.Forms.Button testBtn;
+        private System.Windows.Forms.Button stopBtn;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;

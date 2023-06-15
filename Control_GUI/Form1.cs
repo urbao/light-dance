@@ -55,9 +55,9 @@ namespace Control_GUI
             serialPortTextBox.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             serialPortTextBox.Font = new System.Drawing.Font("Consolas", 11);
             serialPortTextBox.Text = "[Serial Ports]";
-            testBtn.BackColor= System.Drawing.ColorTranslator.FromHtml(TEST_BTN_COLOR);
-            testBtn.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKGREY);
-            testBtn.Font = new System.Drawing.Font("Consolas", 13);
+            stopBtn.BackColor= System.Drawing.ColorTranslator.FromHtml(TEST_BTN_COLOR);
+            stopBtn.ForeColor = System.Drawing.ColorTranslator.FromHtml(DARKMODE_DARKGREY);
+            stopBtn.Font = new System.Drawing.Font("Consolas", 13);
             statsListBox.BackColor= System.Drawing.ColorTranslator.FromHtml(DARKMODE_LIGHTGREY);
             statsListBox.ForeColor= System.Drawing.ColorTranslator.FromHtml(DARKMODE_WHITE);
             statsListBox.Font= new System.Drawing.Font("Consolas", 11);
@@ -494,21 +494,15 @@ namespace Control_GUI
         {
             // first cast the sender to an Serial Port for reading data out
             SerialPort sp = sender as SerialPort;
-            if(sp != null)
+            DateTime currentTime = DateTime.Now;
+            while (sp.BytesToRead > 0)
             {
-                // read all existing buffer data at once
-                string receivedData = sp.ReadExisting();
-                // Split the received data into lines
-                string[] lines = receivedData.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string line in lines)
-                {
-                    DateTime currentTime = DateTime.Now;
-                    string currTime = "[" + currentTime.ToString("HH:mm:ss") + "] -> ";
-                    // make sure no extra unwanted spaces existed
-                    string trimmedLine = line.Trim();
-                    instance.statsListBox.Items.Add(currTime+trimmedLine);
-                    instance.statsListBox.TopIndex = instance.statsListBox.Items.Count - 1;
-                }
+                string receivedData = sp.ReadLine(); // Read a line of data
+                string currTime = "[" + currentTime.ToString("HH:mm:ss") + "] -> ";
+                // make sure no extra unwanted spaces existed
+                string trimmedLine = receivedData.Trim();
+                instance.statsListBox.Items.Add(currTime + trimmedLine);
+                instance.statsListBox.TopIndex = instance.statsListBox.Items.Count - 1;
             }
         }
     }
