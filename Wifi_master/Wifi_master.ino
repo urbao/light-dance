@@ -141,9 +141,9 @@ void manageSlave() {
   }
 }
 
-void send_data() {
+void send_data(String data) {
 
-  myData[BOARDNUMBER].data_number = String("start");
+  myData[BOARDNUMBER].data_number = data;
 
   //                            |匹配裝置位址|         發送的資料             |       資料大小             |
   esp_err_t result = esp_now_send(0, (uint8_t *)&myData[BOARDNUMBER], sizeof(myData[BOARDNUMBER]));
@@ -188,11 +188,16 @@ void setup() {
 
 void loop() {
   if (Serial.available()) {
-    int read_data = Serial.read();
+    String read_data = Serial.readStringUntil('\n');
     Serial.println(read_data);
-    if (read_data == 49) {
-      Serial.println("send data");
-      send_data();
+    /*if (read_data != "0") {
+      Serial.println("Send Data: Excute Stage_"+read_data);
+      send_data("stage_"+read_data.substring(0,1));
     }
+    if (read_data == "0") {
+      Serial.println("Send Data: Stop");
+      send_data("stop");
+    }*/
+    send_data(read_data);
   }
 }

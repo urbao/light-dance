@@ -1,6 +1,4 @@
-#include <C:\Users\USER\AppData\Local\Arduino15\packages\esp32\hardware\esp32\1.0.6\libraries\SD\src\SD.h>
-#include <sd_defines.h>
-#include <sd_diskio.h>
+#include <SD.h>
 #include <SPI.h>
 //引入函式庫
 #include <WiFi.h>
@@ -117,7 +115,14 @@ void setup() {
 
 void loop() {
   vTaskDelay(10 / portTICK_PERIOD_MS);  // 延遲1000ms
-  if (stage != 0) {
+  if (stage == -1) {
+    Serial.println("shut down");
+    for (int i = 0; i < 7; i++) {
+      digitalWrite(light[i][0], 0);
+      digitalWrite(light[i][1], 0);
+    }
+  }
+  if (stage > 0) {
     // 檢查檔案是否能正常開啟讀取
     String stage_filename = filename + String(stage) + ".csv";
     dataFile = SD.open(stage_filename);
@@ -131,12 +136,24 @@ void loop() {
     Serial.println("[Done] All check up good!");
     startTime = millis();  // 接收wifi訊號之後，設定startTime
     reading = true;        // 預設直接開始讀取
+    for (int i = 0; i < 7; i++) {
+      digitalWrite(light[i][0], 0);
+      digitalWrite(light[i][1], 0);
+    }
     // 開始讀取檔案內容(一次讀完)
     // 預設檔案室依時間順序排序 所以逐行讀檔
     while (dataFile.available()) {
       // 中斷讀取
       if (stage == 0) {
         Serial.println("stop");
+        break;
+      }
+      if (stage == -1) {
+        Serial.println("shut down");
+        for (int i = 0; i < 7; i++) {
+          digitalWrite(light[i][0], 0);
+          digitalWrite(light[i][1], 0);
+        }
         break;
       }
       // 因為SD Library依賴於Stream Library
@@ -200,10 +217,6 @@ void loop() {
     }
     // 結束之前 把檔案關掉
     dataFile.close();
-    for (int i = 0; i < 7; i++) {
-      digitalWrite(light[i][0], 0);
-      digitalWrite(light[i][1], 0);
-    }
   }
 }
 
@@ -263,7 +276,7 @@ void InitESPNow() {
 //讀取master資料
 void OnDataRecv(const uint8_t *mac, const uint8_t *incomingData, int len) {
   memcpy(&database, incomingData, sizeof(database));
-  Serial.printf("data: %s , from: %s\n", database.data_number, database.board_name);
+  Serial.printf("data: %s , from: %s", database.data_number, database.board_name);
   // 判斷接收到的訊息是要執行stage檔案還是暫停
   /*if (database.data_number.substring(0, 4) == "stage") {
     stage = database.data_number.substring(6, 7).toInt();
